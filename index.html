@@ -1,0 +1,2219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>UP & CAFE — Sip • Relax • Enjoy</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --espresso:#2B120A; --choc:#170A06; --gold:#D9A441;
+  --cream:#FFF3DF; --caramel:#A96832; --white:#FFFFFF;
+  --green:#5A8F3F; --red:#C0392B; --gray:#8B7B6B;
+  --bg:#FAF6F0; --shadow:0 4px 20px rgba(43,18,10,.08);
+  --shadow-lg:0 12px 40px rgba(43,18,10,.15);
+  --radius:18px; --radius-sm:12px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);color:var(--espresso);line-height:1.5;overflow-x:hidden;
+  min-height:100vh;padding-bottom:80px}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+.hidden{display:none!important}
+.container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+/* TOPBAR */
+.topbar{background:var(--choc);color:var(--cream);padding:10px 16px;
+  font-size:.85rem;text-align:center;font-weight:500;letter-spacing:.3px}
+.topbar i{color:var(--gold);margin-right:6px}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,var(--espresso),var(--choc));
+  color:var(--cream);padding:16px 0;position:sticky;top:0;z-index:100;
+  box-shadow:var(--shadow)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;
+  font-size:1.2rem;letter-spacing:-.5px;cursor:pointer}
+.logo-cup{width:42px;height:42px;border-radius:12px;
+  background:linear-gradient(135deg,var(--gold),var(--caramel));
+  display:flex;align-items:center;justify-content:center;
+  color:var(--choc);font-size:1.3rem;position:relative;
+  box-shadow:0 4px 12px rgba(217,164,65,.4)}
+.logo-cup::after{content:'↑';position:absolute;top:-4px;right:-4px;
+  background:var(--cream);color:var(--espresso);width:16px;height:16px;
+  border-radius:50%;font-size:.7rem;font-weight:900;
+  display:flex;align-items:center;justify-content:center}
+.logo-tagline{font-size:.6rem;color:var(--gold);font-weight:400;
+  letter-spacing:1px;text-transform:uppercase}
+.header-actions{display:flex;gap:8px;align-items:center}
+.icon-btn{width:40px;height:40px;border-radius:50%;
+  background:rgba(255,243,223,.1);color:var(--cream);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;position:relative;transition:all .2s}
+.icon-btn:hover,.icon-btn:active{background:rgba(255,243,223,.25)}
+.badge{position:absolute;top:-4px;right:-4px;background:var(--gold);
+  color:var(--choc);font-size:.6rem;font-weight:800;min-width:18px;
+  height:18px;padding:0 5px;border-radius:10px;display:flex;
+  align-items:center;justify-content:center}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--cream),#FFF9EF);
+  padding:28px 16px 32px;border-radius:0 0 30px 30px;margin-bottom:20px;
+  position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-30%;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,164,65,.2),transparent 70%)}
+.hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:2}
+.hero h1{font-size:1.7rem;font-weight:900;letter-spacing:-1px;
+  line-height:1.15;margin-bottom:8px}
+.hero h1 span{color:var(--caramel)}
+.hero p{color:var(--gray);font-size:.9rem;margin-bottom:16px;max-width:400px}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;
+  background:var(--espresso);color:var(--cream);padding:12px 22px;
+  border-radius:50px;font-weight:700;font-size:.9rem;
+  box-shadow:0 6px 20px rgba(43,18,10,.25)}
+.hero-cta i{color:var(--gold)}
+.hero-cta:active{transform:scale(.97)}
+
+/* LOYALTY BANNER */
+.loyalty-banner{margin:0 16px 20px;max-width:1068px;margin-left:auto;
+  margin-right:auto;background:linear-gradient(135deg,var(--choc),var(--espresso));
+  color:var(--cream);padding:18px 20px;border-radius:var(--radius);
+  display:flex;justify-content:space-between;align-items:center;
+  box-shadow:var(--shadow-lg);cursor:pointer;border:1px solid var(--gold)}
+.loyalty-banner .lb-info{flex:1}
+.loyalty-banner h3{font-size:1rem;color:var(--gold);margin-bottom:4px;
+  display:flex;align-items:center;gap:6px}
+.loyalty-banner p{font-size:.8rem;opacity:.85}
+.loyalty-banner .lb-points{font-size:1.5rem;font-weight:900;
+  color:var(--gold);text-align:right}
+.loyalty-banner .lb-points small{display:block;font-size:.65rem;
+  font-weight:500;color:var(--cream);opacity:.7}
+
+/* CATS */
+.cats{display:flex;gap:10px;overflow-x:auto;padding:0 16px 16px;
+  scrollbar-width:none;max-width:1100px;margin:0 auto}
+.cats::-webkit-scrollbar{display:none}
+.cat-btn{flex-shrink:0;padding:10px 18px;border-radius:50px;
+  background:var(--white);color:var(--espresso);font-weight:600;
+  font-size:.85rem;white-space:nowrap;border:2px solid transparent;
+  transition:all .2s;box-shadow:var(--shadow)}
+.cat-btn.active{background:var(--espresso);color:var(--cream);
+  border-color:var(--gold)}
+.cat-btn i{margin-right:6px;color:var(--caramel)}
+.cat-btn.active i{color:var(--gold)}
+
+/* SEARCH */
+.search-wrap{max-width:1100px;margin:0 auto 20px;padding:0 16px}
+.search-box{display:flex;align-items:center;gap:10px;background:var(--white);
+  border-radius:50px;padding:12px 20px;box-shadow:var(--shadow)}
+.search-box i{color:var(--caramel)}
+.search-box input{flex:1;border:none;outline:none;font-size:.95rem;
+  background:transparent;font-family:inherit;color:var(--espresso)}
+
+/* PRODUCT GRID */
+.section-title{font-size:1.15rem;font-weight:800;letter-spacing:-.5px;
+  margin:0 auto 16px;max-width:1100px;padding:0 16px;
+  display:flex;align-items:center;gap:8px}
+.section-title i{color:var(--caramel)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:14px;max-width:1100px;margin:0 auto 30px;padding:0 16px}
+.card{background:var(--white);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;
+  transition:transform .2s;position:relative}
+.card:active{transform:scale(.98)}
+.card-img{height:120px;display:flex;align-items:center;justify-content:center;
+  font-size:3rem;position:relative;
+  background:linear-gradient(135deg,#FFF9EF,#FFE9C8)}
+.card-img i{color:var(--caramel);opacity:.85}
+.card-badge{position:absolute;top:8px;left:8px;background:var(--red);
+  color:#fff;font-size:.6rem;font-weight:800;padding:3px 8px;
+  border-radius:20px;text-transform:uppercase}
+.card-badge.new{background:var(--green)}
+.card-body{padding:12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.card-name{font-weight:700;font-size:.9rem;line-height:1.3}
+.card-desc{font-size:.72rem;color:var(--gray);flex:1;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  overflow:hidden}
+.card-foot{display:flex;justify-content:space-between;align-items:center;
+  margin-top:8px;gap:6px}
+.card-price{font-weight:900;color:var(--caramel);font-size:1rem}
+.card-price small{font-weight:500;color:var(--gray);font-size:.65rem}
+.add-btn{width:34px;height:34px;border-radius:50%;
+  background:var(--espresso);color:var(--gold);display:flex;
+  align-items:center;justify-content:center;font-size:1rem;
+  transition:all .15s;flex-shrink:0}
+.add-btn:active{transform:scale(.85);background:var(--gold);color:var(--espresso)}
+.card.disabled{opacity:.5;pointer-events:none}
+.card.disabled::after{content:'Unavailable';position:absolute;inset:0;
+  background:rgba(23,10,6,.7);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);
+  box-shadow:0 -4px 20px rgba(0,0,0,.08);display:flex;
+  justify-content:space-around;padding:8px 0 max(8px,env(safe-area-inset-bottom));
+  z-index:90;border-top:1px solid rgba(43,18,10,.06)}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:6px;color:var(--gray);font-size:.65rem;font-weight:600;
+  cursor:pointer;transition:color .2s;position:relative}
+.nav-item i{font-size:1.2rem}
+.nav-item.active{color:var(--espresso)}
+.nav-item.active i{color:var(--gold)}
+.nav-badge{position:absolute;top:0;right:calc(50% - 20px);background:var(--red);
+  color:#fff;font-size:.55rem;font-weight:800;min-width:15px;height:15px;
+  padding:0 4px;border-radius:8px;display:flex;align-items:center;
+  justify-content:center}
+
+/* DRAWER */
+.drawer-overlay{position:fixed;inset:0;background:rgba(23,10,6,.5);
+  z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;
+  backdrop-filter:blur(2px)}
+.drawer-overlay.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:100%;max-width:440px;
+  background:var(--bg);z-index:201;transform:translateX(100%);
+  transition:transform .3s;display:flex;flex-direction:column}
+.drawer.open{transform:translateX(0)}
+.drawer-head{padding:20px;background:var(--espresso);color:var(--cream);
+  display:flex;justify-content:space-between;align-items:center}
+.drawer-head h2{font-size:1.1rem;font-weight:800}
+.drawer-body{flex:1;overflow-y:auto;padding:16px}
+.cart-item{display:flex;gap:12px;background:var(--white);
+  border-radius:var(--radius-sm);padding:12px;margin-bottom:10px;
+  box-shadow:var(--shadow)}
+.cart-item-img{width:60px;height:60px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,#FFF9EF,#FFE9C8);display:flex;
+  align-items:center;justify-content:center;font-size:1.6rem;color:var(--caramel)}
+.cart-item-info{flex:1;display:flex;flex-direction:column;gap:4px}
+.cart-item-name{font-weight:700;font-size:.9rem}
+.cart-item-price{color:var(--caramel);font-weight:800;font-size:.85rem}
+.qty-control{display:flex;align-items:center;gap:10px;background:var(--cream);
+  border-radius:20px;padding:3px 6px;width:fit-content}
+.qty-btn{width:24px;height:24px;border-radius:50%;background:var(--espresso);
+  color:var(--cream);display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:700}
+.qty-val{font-weight:800;font-size:.85rem;min-width:16px;text-align:center}
+.remove-btn{color:var(--red);font-size:.85rem;padding:4px;align-self:flex-start}
+.cart-empty{text-align:center;padding:60px 20px;color:var(--gray)}
+.cart-empty i{font-size:4rem;color:var(--cream);margin-bottom:12px}
+.drawer-foot{padding:16px;background:var(--white);
+  border-top:1px solid rgba(43,18,10,.08)}
+.cart-totals{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;
+  font-size:.9rem}
+.cart-row{display:flex;justify-content:space-between}
+.cart-row.total{font-size:1.1rem;font-weight:900;color:var(--espresso);
+  padding-top:8px;border-top:2px dashed var(--cream)}
+.cart-row.total span:last-child{color:var(--caramel)}
+.btn-primary{width:100%;padding:14px;border-radius:50px;background:var(--gold);
+  color:var(--choc);font-weight:800;font-size:1rem;
+  box-shadow:0 6px 20px rgba(217,164,65,.4)}
+.btn-primary:active{transform:scale(.98)}
+.btn-primary:disabled{opacity:.5;box-shadow:none}
+.btn-secondary{width:100%;padding:14px;border-radius:50px;
+  background:var(--espresso);color:var(--cream);font-weight:800;font-size:.95rem}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(23,10,6,.6);z-index:300;
+  display:none;align-items:flex-end;justify-content:center;
+  backdrop-filter:blur(3px)}
+.modal-overlay.open{display:flex}
+.modal{background:var(--bg);width:100%;max-width:500px;
+  border-radius:24px 24px 0 0;max-height:92vh;display:flex;
+  flex-direction:column;animation:slideUp .3s ease}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-head{padding:20px;display:flex;justify-content:space-between;
+  align-items:center;border-bottom:1px solid rgba(43,18,10,.08)}
+.modal-head h2{font-size:1.1rem;font-weight:800}
+.modal-body{flex:1;overflow-y:auto;padding:20px}
+.modal-foot{padding:16px 20px;border-top:1px solid rgba(43,18,10,.08)}
+
+/* FORMS */
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-weight:700;font-size:.82rem;
+  margin-bottom:6px;color:var(--espresso)}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:12px 16px;border-radius:12px;
+  border:2px solid var(--cream);background:var(--white);
+  font-size:.92rem;font-family:inherit;outline:none;color:var(--espresso)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:var(--gold)}
+.form-group textarea{resize:vertical;min-height:70px}
+.form-error{color:var(--red);font-size:.8rem;margin-top:4px;display:none}
+.form-error.show{display:block}
+
+/* PAYMENT */
+.pay-option{display:flex;align-items:center;gap:12px;background:var(--white);
+  border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px;
+  border:2px solid transparent;cursor:pointer;transition:all .2s}
+.pay-option.selected{border-color:var(--gold);background:#FFFDF7}
+.pay-icon{width:44px;height:44px;border-radius:12px;background:var(--cream);
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+  color:var(--caramel);flex-shrink:0}
+.pay-icon.mpesa{background:#4CAF50;color:#fff}
+.pay-icon.cash{background:#FF9800;color:#fff}
+.pay-info{flex:1}
+.pay-info strong{display:block;font-size:.9rem}
+.pay-info small{color:var(--gray);font-size:.72rem}
+.pay-option input[type=radio]{accent-color:var(--gold);width:18px;height:18px}
+
+/* LOYALTY CARD */
+.loyalty-card{background:linear-gradient(135deg,var(--choc),var(--espresso));
+  border-radius:20px;padding:24px;color:var(--cream);
+  box-shadow:var(--shadow-lg);position:relative;overflow:hidden;
+  border:1px solid var(--gold);margin-bottom:20px}
+.loyalty-card::before{content:'';position:absolute;top:-50%;right:-30%;
+  width:250px;height:250px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,164,65,.15),transparent 70%)}
+.loyalty-card-head{display:flex;justify-content:space-between;
+  align-items:flex-start;margin-bottom:20px;position:relative;z-index:1}
+.loyalty-card-head .brand{font-weight:800;font-size:.9rem;
+  color:var(--gold);letter-spacing:1px;text-transform:uppercase}
+.loyalty-card-head .brand small{display:block;font-size:.6rem;
+  color:var(--cream);opacity:.6;letter-spacing:2px;margin-top:2px}
+.loyalty-card-head .status{background:var(--green);color:#fff;
+  font-size:.65rem;font-weight:800;padding:4px 10px;border-radius:20px;
+  text-transform:uppercase}
+.loyalty-card-num{font-family:'Courier New',monospace;font-size:1.05rem;
+  letter-spacing:3px;color:var(--gold);margin-bottom:16px;
+  position:relative;z-index:1}
+.loyalty-card-name{font-size:.85rem;opacity:.85;margin-bottom:2px}
+.loyalty-card-meta{display:flex;justify-content:space-between;
+  align-items:flex-end;position:relative;z-index:1}
+.loyalty-card-points .num{font-size:1.8rem;font-weight:900;color:var(--gold);
+  line-height:1}
+.loyalty-card-points .lbl{font-size:.65rem;opacity:.7;
+  text-transform:uppercase;letter-spacing:1px}
+.loyalty-card-qr{width:56px;height:56px;background:var(--cream);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;color:var(--choc)}
+.loyalty-card-date{font-size:.65rem;opacity:.6;margin-top:14px;
+  position:relative;z-index:1}
+
+/* VOUCHERS */
+.voucher{background:linear-gradient(135deg,var(--gold),var(--caramel));
+  border-radius:12px;padding:16px;color:var(--choc);margin-bottom:10px;
+  display:flex;justify-content:space-between;align-items:center;
+  position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.voucher::before{content:'';position:absolute;left:-10px;top:50%;
+  transform:translateY(-50%);width:20px;height:20px;border-radius:50%;
+  background:var(--bg)}
+.voucher::after{content:'';position:absolute;right:-10px;top:50%;
+  transform:translateY(-50%);width:20px;height:20px;border-radius:50%;
+  background:var(--bg)}
+.voucher-info strong{display:block;font-size:1.1rem;font-weight:900}
+.voucher-info small{font-size:.72rem;opacity:.8}
+.voucher-code{font-family:'Courier New',monospace;font-weight:800;
+  font-size:.85rem;letter-spacing:2px;background:rgba(0,0,0,.1);
+  padding:6px 10px;border-radius:6px}
+
+/* ADMIN */
+.admin-header{background:linear-gradient(135deg,var(--choc),var(--espresso));
+  color:var(--cream);padding:16px 0}
+.admin-tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;
+  background:var(--white);border-bottom:1px solid rgba(43,18,10,.08);
+  scrollbar-width:none;position:sticky;top:0;z-index:50}
+.admin-tabs::-webkit-scrollbar{display:none}
+.admin-tab{padding:8px 16px;border-radius:50px;font-weight:700;
+  font-size:.78rem;white-space:nowrap;background:var(--cream);
+  color:var(--espresso);cursor:pointer;transition:all .2s}
+.admin-tab.active{background:var(--espresso);color:var(--gold)}
+.admin-content{padding:16px;max-width:1100px;margin:0 auto}
+
+/* STATS */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;margin-bottom:20px}
+.stat{background:var(--white);border-radius:var(--radius-sm);padding:16px;
+  box-shadow:var(--shadow);border-left:4px solid var(--gold)}
+.stat .num{font-size:1.4rem;font-weight:900;color:var(--espresso)}
+.stat .lbl{font-size:.72rem;color:var(--gray);text-transform:uppercase;
+  letter-spacing:.5px;font-weight:600;margin-top:2px}
+
+/* LIST ITEM */
+.list-item{background:var(--white);border-radius:var(--radius-sm);
+  padding:14px;margin-bottom:10px;box-shadow:var(--shadow);
+  display:flex;gap:12px;align-items:center}
+.list-item-img{width:50px;height:50px;border-radius:10px;
+  background:linear-gradient(135deg,#FFF9EF,#FFE9C8);display:flex;
+  align-items:center;justify-content:center;font-size:1.5rem;
+  color:var(--caramel);flex-shrink:0}
+.list-item-info{flex:1;min-width:0}
+.list-item-info strong{display:block;font-size:.9rem}
+.list-item-info small{color:var(--gray);font-size:.75rem;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.list-item-actions{display:flex;gap:6px;flex-shrink:0}
+.mini-btn{width:32px;height:32px;border-radius:8px;background:var(--cream);
+  color:var(--espresso);display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;transition:all .15s}
+.mini-btn:hover{background:var(--espresso);color:var(--cream)}
+.mini-btn.danger{background:#FEE;color:var(--red)}
+.mini-btn.danger:hover{background:var(--red);color:#fff}
+.mini-btn.success{background:#EFE;color:var(--green)}
+.mini-btn.success:hover{background:var(--green);color:#fff}
+
+/* STATUS PILLS */
+.pill{display:inline-block;font-size:.65rem;font-weight:800;
+  padding:3px 10px;border-radius:20px;text-transform:uppercase;
+  letter-spacing:.5px}
+.pill.pending_payment{background:#FFF3CD;color:#856404}
+.pill.confirmed{background:#D1ECF1;color:#0C5460}
+.pill.delivery{background:#CCE5FF;color:#004085}
+.pill.delivered{background:#D4EDDA;color:#155724}
+.pill.cancelled{background:#F8D7DA;color:#721C24}
+.pill.paid{background:#D4EDDA;color:#155724}
+.pill.unpaid{background:#F8D7DA;color:#721C24}
+
+/* TABS */
+.seg-tabs{display:flex;gap:6px;background:var(--cream);padding:4px;
+  border-radius:50px;margin-bottom:16px}
+.seg-tab{flex:1;padding:8px;border-radius:50px;font-weight:700;
+  font-size:.78rem;color:var(--espresso);text-align:center;cursor:pointer;
+  transition:all .2s}
+.seg-tab.active{background:var(--white);color:var(--espresso);
+  box-shadow:var(--shadow)}
+
+/* TOAST */
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%)
+  translateY(20px);background:var(--espresso);color:var(--cream);
+  padding:12px 22px;border-radius:50px;font-weight:600;font-size:.85rem;
+  box-shadow:0 8px 30px rgba(0,0,0,.3);opacity:0;pointer-events:none;
+  transition:all .3s;z-index:500;display:flex;align-items:center;
+  gap:8px;max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast i{color:var(--gold)}
+.toast.error i{color:#FF6B6B}
+
+/* SCREENS */
+.screen{display:none}
+.screen.active{display:block;animation:fadeIn .25s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* EMPTY */
+.empty{text-align:center;padding:50px 20px;color:var(--gray)}
+.empty i{font-size:3.5rem;color:var(--cream);margin-bottom:12px;display:block}
+.empty h3{color:var(--espresso);margin-bottom:6px;font-size:1rem}
+.empty p{font-size:.85rem}
+
+/* AUTH */
+.auth-wrap{min-height:calc(100vh - 120px);display:flex;
+  align-items:center;justify-content:center;padding:20px}
+.auth-box{background:var(--white);border-radius:var(--radius);padding:28px 24px;
+  box-shadow:var(--shadow-lg);width:100%;max-width:400px}
+.auth-box h2{text-align:center;margin-bottom:4px;font-size:1.4rem}
+.auth-box .sub{text-align:center;color:var(--gray);font-size:.85rem;
+  margin-bottom:24px}
+.auth-switch{text-align:center;margin-top:16px;font-size:.85rem;color:var(--gray)}
+.auth-switch a{color:var(--caramel);font-weight:700;cursor:pointer}
+
+/* REVIEWS */
+.review-card{background:var(--white);border-radius:var(--radius-sm);
+  padding:14px;margin-bottom:10px;box-shadow:var(--shadow)}
+.review-head{display:flex;justify-content:space-between;
+  align-items:center;margin-bottom:6px}
+.review-head strong{font-size:.85rem}
+.stars{color:var(--gold);font-size:.8rem}
+.review-text{font-size:.85rem;color:var(--espresso)}
+.review-meta{font-size:.7rem;color:var(--gray);margin-top:6px}
+
+/* UPDATE BUTTON */
+.update-btn{position:fixed;bottom:100px;right:16px;background:var(--green);
+  color:#fff;width:50px;height:50px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;box-shadow:0 6px 20px rgba(90,143,63,.4);
+  cursor:pointer;z-index:95;transition:transform .15s}
+.update-btn:active{transform:scale(.9)}
+.update-btn.spinning i{animation:spin 1s linear infinite}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* PROCESSING OVERLAY */
+.processing-overlay{position:fixed;inset:0;background:rgba(23,10,6,.85);
+  z-index:600;display:none;align-items:center;justify-content:center;
+  flex-direction:column;color:var(--cream);text-align:center;padding:20px;
+  backdrop-filter:blur(4px)}
+.processing-overlay.open{display:flex}
+.spinner{width:60px;height:60px;border:5px solid rgba(255,243,223,.2);
+  border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;
+  margin-bottom:20px}
+.processing-overlay h3{font-size:1.2rem;margin-bottom:8px;color:var(--gold)}
+.processing-overlay p{font-size:.9rem;opacity:.8;max-width:300px}
+
+/* RESPONSIVE */
+@media(min-width:768px){
+  .hero h1{font-size:2.6rem}
+  .hero{padding:48px 24px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+  .card-img{height:150px;font-size:3.5rem}
+  .bottom-nav{top:50%;bottom:auto;left:0;transform:translateY(-50%);
+    flex-direction:column;width:70px;border-radius:0 20px 20px 0;
+    padding:16px 0;gap:16px;box-shadow:4px 0 20px rgba(0,0,0,.08)}
+  .nav-item{flex:none}
+  body{padding-bottom:20px;padding-left:70px}
+  .drawer{max-width:440px}
+  .update-btn{bottom:24px;right:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <i class="fas fa-phone"></i> 0141701000 • Mombasa CBD Delivery • Free over KSh 500
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo" onclick="goHome()">
+      <div class="logo-cup"><i class="fas fa-mug-hot"></i></div>
+      <div>
+        <div>UP & CAFE</div>
+        <div class="logo-tagline">Sip • Relax • Enjoy</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" onclick="showScreen('orders')"><i class="fas fa-receipt"></i></button>
+      <button class="icon-btn" onclick="openCart()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge" id="cartBadge">0</span>
+      </button>
+      <button class="icon-btn" onclick="showScreen('account')" id="accountBtn"><i class="fas fa-user"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== HOME SCREEN ==================== -->
+<section class="screen active" id="screen-home">
+  <div class="hero">
+    <div class="hero-inner">
+      <h1>Great Coffee.<br><span>Crispy Chips.</span><br>Unforgettable Moments.</h1>
+      <p>Order your favourites and we'll deliver hot & fresh to your door — Mombasa CBD.</p>
+      <button class="hero-cta" onclick="scrollToMenu()">
+        <i class="fas fa-utensils"></i> Order Now
+      </button>
+    </div>
+  </div>
+
+  <div class="loyalty-banner" id="homeLoyalty" onclick="showScreen('loyalty')" style="display:none">
+    <div class="lb-info">
+      <h3><i class="fas fa-crown"></i> Up & Cafe Loyalty Card</h3>
+      <p>Earn 1 point for every KSh 10 spent (orders over KSh 100)</p>
+    </div>
+    <div class="lb-points">
+      <span id="homePoints">0</span>
+      <small>points</small>
+    </div>
+  </div>
+
+  <div class="cats" id="catTabs"></div>
+
+  <div class="search-wrap">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search chips, coffee, tea..." oninput="filterProducts()">
+    </div>
+  </div>
+
+  <h2 class="section-title"><i class="fas fa-star"></i> <span id="currentCatLabel">All Products</span></h2>
+  <div class="grid" id="productGrid"></div>
+</section>
+
+<!-- ==================== ORDERS SCREEN ==================== -->
+<section class="screen" id="screen-orders">
+  <div style="padding:16px;max-width:1100px;margin:0 auto">
+    <h2 class="section-title" style="padding:0"><i class="fas fa-receipt"></i> My Orders</h2>
+    <div id="ordersList"></div>
+  </div>
+</section>
+
+<!-- ==================== LOYALTY SCREEN ==================== -->
+<section class="screen" id="screen-loyalty">
+  <div style="padding:16px;max-width:1100px;margin:0 auto">
+    <h2 class="section-title" style="padding:0"><i class="fas fa-crown"></i> Loyalty Card</h2>
+    <div id="loyaltyCardWrap"></div>
+    
+    <div style="background:var(--white);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);margin-bottom:16px">
+      <h3 style="font-size:1rem;margin-bottom:12px"><i class="fas fa-gift" style="color:var(--caramel)"></i> Redeem Points</h3>
+      <p style="font-size:.8rem;color:var(--gray);margin-bottom:12px">Convert 100 points into a KSh 100 shopping voucher. Minimum 100 points.</p>
+      <div class="form-group" style="margin-bottom:10px">
+        <label>Points to redeem</label>
+        <input type="number" id="redeemPoints" min="100" step="100" placeholder="100, 200, 500...">
+      </div>
+      <button class="btn-primary" onclick="redeemVoucher()"><i class="fas fa-ticket-alt"></i> Redeem Voucher</button>
+    </div>
+
+    <h3 class="section-title" style="padding:0;font-size:1rem"><i class="fas fa-ticket-alt"></i> My Vouchers</h3>
+    <div id="vouchersList" style="margin-bottom:16px"></div>
+
+    <h3 class="section-title" style="padding:0;font-size:1rem"><i class="fas fa-history"></i> Points History</h3>
+    <div id="pointsHistory"></div>
+  </div>
+</section>
+
+<!-- ==================== ACCOUNT SCREEN ==================== -->
+<section class="screen" id="screen-account">
+  <div style="padding:16px;max-width:1100px;margin:0 auto" id="accountContent"></div>
+</section>
+
+<!-- ==================== AUTH SCREEN ==================== -->
+<section class="screen" id="screen-auth">
+  <div class="auth-wrap">
+    <div class="auth-box" id="authBox"></div>
+  </div>
+</section>
+
+<!-- ==================== ADMIN SCREEN ==================== -->
+<section class="screen" id="screen-admin">
+  <div class="admin-header">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="font-weight:800;font-size:1.1rem"><i class="fas fa-shield-alt"></i> Admin Panel</div>
+        <div style="font-size:.72rem;color:var(--gold)">Up & Cafe Management</div>
+      </div>
+      <button class="icon-btn" onclick="showScreen('home')"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+  <div class="admin-tabs" id="adminTabs"></div>
+  <div class="admin-content" id="adminContent"></div>
+</section>
+
+<!-- ==================== CART DRAWER ==================== -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeCart()"></div>
+<aside class="drawer" id="cartDrawer">
+  <div class="drawer-head">
+    <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
+    <button class="icon-btn" onclick="closeCart()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot"></div>
+</aside>
+
+<!-- ==================== CHECKOUT MODAL ==================== -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2><i class="fas fa-credit-card"></i> Checkout</h2>
+      <button class="icon-btn" onclick="closeModal('checkoutModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="checkoutBody"></div>
+    <div class="modal-foot">
+      <button class="btn-primary" id="payBtn" onclick="processPayment()">Place Order & Pay</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SUCCESS MODAL ==================== -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal">
+    <div class="modal-body" style="text-align:center;padding:40px 20px">
+      <div style="width:80px;height:80px;border-radius:50%;background:var(--green);
+        color:#fff;display:flex;align-items:center;justify-content:center;
+        font-size:2.5rem;margin:0 auto 20px;animation:pop .5s ease">
+        <i class="fas fa-check"></i>
+      </div>
+      <h2 style="font-size:1.3rem;margin-bottom:6px">Order Confirmed!</h2>
+      <p style="color:var(--gray);margin-bottom:20px;font-size:.9rem" id="successMsg">Payment received. Admin is preparing your order.</p>
+      <div style="background:var(--cream);border-radius:12px;padding:16px;
+        text-align:left;margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;font-size:.85rem;
+          padding:4px 0"><span>Order ID:</span><strong id="successOrderId">—</strong></div>
+        <div style="display:flex;justify-content:space-between;font-size:.85rem;
+          padding:4px 0"><span>Total:</span><strong id="successTotal">—</strong></div>
+        <div style="display:flex;justify-content:space-between;font-size:.85rem;
+          padding:4px 0"><span>Status:</span><strong style="color:var(--green)">Confirmed</strong></div>
+      </div>
+      <button class="btn-primary" onclick="closeModal('successModal');showScreen('orders')">View Orders</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== EDIT MODAL ==================== -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="editTitle">Edit</h2>
+      <button class="icon-btn" onclick="closeModal('editModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="editBody"></div>
+    <div class="modal-foot">
+      <button class="btn-primary" onclick="saveEdit()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PROCESSING OVERLAY ==================== -->
+<div class="processing-overlay" id="processingOverlay">
+  <div class="spinner"></div>
+  <h3>Waiting for M-Pesa...</h3>
+  <p>Please enter your M-Pesa PIN on your phone to complete the payment.</p>
+  <p style="margin-top:12px;font-size:.8rem;opacity:.6">Do not close this app.</p>
+  <button class="btn-secondary" style="margin-top:20px;max-width:200px" onclick="cancelPayment()">Cancel</button>
+</div>
+
+<!-- ==================== BOTTOM NAV ==================== -->
+<nav class="bottom-nav">
+  <div class="nav-item active" data-nav="home" onclick="goHome()">
+    <i class="fas fa-home"></i><span>Home</span>
+  </div>
+  <div class="nav-item" data-nav="orders" onclick="showScreen('orders')">
+    <i class="fas fa-receipt"></i><span>Orders</span>
+  </div>
+  <div class="nav-item" data-nav="loyalty" onclick="showScreen('loyalty')">
+    <i class="fas fa-crown"></i><span>Loyalty</span>
+  </div>
+  <div class="nav-item" data-nav="account" onclick="showScreen('account')">
+    <i class="fas fa-user"></i><span>Account</span>
+  </div>
+</nav>
+
+<!-- ==================== UPDATE BUTTON ==================== -->
+<div class="update-btn" id="updateBtn" onclick="checkForUpdates()" title="Check for Updates">
+  <i class="fas fa-sync-alt"></i>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg"></span></div>
+
+<script>
+/* ============================================================
+   UP & CAFE — COMPLETE APPLICATION LOGIC
+   ============================================================ */
+
+// ⚠️ IMPORTANT: REPLACE THIS WITH YOUR DEPLOYED BACKEND URL
+// Example: https://upcafe-backend.onrender.com
+const API_BASE = 'https://upcafe-backend.onrender.com';
+
+// M-Pesa Configuration (for display only)
+const MPESA_SHORTCODE = '0141701000';
+const MPESA_NAME = 'CLINTON NYAKUNDI ONDEYO';
+
+// ---------- DATABASE (localStorage) ----------
+const DB = {
+  get(key, def = null) {
+    try { const v = localStorage.getItem('upcafe_' + key);
+      return v ? JSON.parse(v) : def; } catch(e) { return def; }
+  },
+  set(key, val) { localStorage.setItem('upcafe_' + key, JSON.stringify(val)); },
+  del(key) { localStorage.removeItem('upcafe_' + key); }
+};
+
+// ---------- DEFAULT DATA ----------
+const DEFAULT_PRODUCTS = [
+  { id:'p1', name:'Plain Chips', price:80, cat:'chips', icon:'fa-french-fries', desc:'Crispy golden fries, lightly salted', available:true },
+  { id:'p2', name:'Masala Chips', price:120, cat:'chips', icon:'fa-pepper-hot', desc:'Fries tossed in spicy masala sauce', available:true },
+  { id:'p3', name:'Chips with Eggs', price:150, cat:'chips', icon:'fa-egg', desc:'Fries topped with two fried eggs', available:true },
+  { id:'p4', name:'Chips with Sausage', price:150, cat:'chips', icon:'fa-hotdog', desc:'Fries served with a juicy sausage', available:true },
+  { id:'p5', name:'Chips and Chicken', price:250, cat:'chips', icon:'fa-drumstick-bite', desc:'Fries with grilled chicken piece', available:true },
+  { id:'p6', name:'Chips with Smokie', price:120, cat:'chips', icon:'fa-hotdog', desc:'Fries with a smoked sausage', available:true },
+  { id:'p7', name:'Chips Special', price:180, cat:'chips', icon:'fa-star', desc:'Fries with sausage, egg & kachumbari', available:true },
+  { id:'p8', name:'Bhajia', price:100, cat:'chips', icon:'fa-circle', desc:'Spiced lentil fritters', available:true },
+  { id:'p9', name:'Samosa', price:30, cat:'chips', icon:'fa-caret-up', desc:'Crispy triangular pastry', available:true },
+  { id:'p10', name:'Sausage', price:50, cat:'chips', icon:'fa-hotdog', desc:'Juicy beef sausage', available:true },
+  { id:'p11', name:'Smokie', price:40, cat:'chips', icon:'fa-hotdog', desc:'Smoked sausage', available:true },
+  { id:'p12', name:'Beef Burger', price:200, cat:'chips', icon:'fa-hamburger', desc:'Beef patty with fresh veggies', available:true },
+  { id:'p13', name:'Chicken Burger', price:250, cat:'chips', icon:'fa-hamburger', desc:'Crispy chicken with lettuce', available:true },
+  { id:'p14', name:'Espresso', price:100, cat:'coffee', icon:'fa-mug-hot', desc:'Rich concentrated shot', available:true },
+  { id:'p15', name:'Americano', price:120, cat:'coffee', icon:'fa-mug-saucer', desc:'Espresso with hot water', available:true },
+  { id:'p16', name:'Cappuccino', price:150, cat:'coffee', icon:'fa-coffee', desc:'Espresso with steamed milk foam', available:true },
+  { id:'p17', name:'Cafe Latte', price:150, cat:'coffee', icon:'fa-mug-hot', desc:'Smooth espresso with milk', available:true },
+  { id:'p18', name:'Mocha', price:180, cat:'coffee', icon:'fa-coffee', desc:'Espresso with chocolate & milk', available:true },
+  { id:'p19', name:'Iced Coffee', price:180, cat:'coffee', icon:'fa-glass-water', desc:'Chilled coffee over ice', available:true },
+  { id:'p20', name:'Kenyan Tea', price:50, cat:'tea', icon:'fa-mug-saucer', desc:'Classic chai with milk', available:true },
+  { id:'p21', name:'Special Tea', price:80, cat:'tea', icon:'fa-leaf', desc:'Premium spiced tea', available:true },
+  { id:'p22', name:'African Tea', price:70, cat:'tea', icon:'fa-mug-hot', desc:'Traditional ginger tea', available:true },
+  { id:'p23', name:'Hot Chocolate', price:120, cat:'tea', icon:'fa-mug-hot', desc:'Rich cocoa with steamed milk', available:true },
+  { id:'p24', name:'Drinking Chocolate', price:100, cat:'tea', icon:'fa-mug-saucer', desc:'Smooth chocolate drink', available:true },
+  { id:'p25', name:'Dawa', price:100, cat:'tea', icon:'fa-mortar-pestle', desc:'Ginger, lemon & honey', available:true },
+  { id:'p26', name:'Fresh Orange Juice', price:100, cat:'juice', icon:'fa-glass-citrus', desc:'Freshly squeezed oranges', available:true },
+  { id:'p27', name:'Mango Juice', price:100, cat:'juice', icon:'fa-glass-water', desc:'Sweet mango blend', available:true },
+  { id:'p28', name:'Passion Juice', price:100, cat:'juice', icon:'fa-glass-water', desc:'Tangy passion fruit', available:true },
+  { id:'p29', name:'Tropical Juice', price:120, cat:'juice', icon:'fa-glass-citrus', desc:'Mixed tropical blend', available:true },
+  { id:'p30', name:'Milkshake', price:150, cat:'juice', icon:'fa-ice-cream', desc:'Creamy milkshake', available:true },
+  { id:'p31', name:'Bottled Water', price:50, cat:'juice', icon:'fa-bottle-water', desc:'500ml purified water', available:true },
+  { id:'p32', name:'Soda', price:60, cat:'juice', icon:'fa-bottle-water', desc:'Chilled soda', available:true },
+  { id:'p33', name:'Mandazi', price:20, cat:'breakfast', icon:'fa-circle', desc:'Soft fried dough', available:true },
+  { id:'p34', name:'Chapati', price:30, cat:'breakfast', icon:'fa-circle', desc:'Soft layered flatbread', available:true },
+  { id:'p35', name:'Pancakes', price:80, cat:'breakfast', icon:'fa-circle', desc:'Fluffy pancakes', available:true },
+  { id:'p36', name:'Boiled Eggs', price:30, cat:'breakfast', icon:'fa-egg', desc:'Two boiled eggs', available:true },
+  { id:'p37', name:'Fried Eggs', price:50, cat:'breakfast', icon:'fa-egg', desc:'Two fried eggs', available:true },
+  { id:'p38', name:'Sausage and Eggs', price:100, cat:'breakfast', icon:'fa-hotdog', desc:'Sausage with fried eggs', available:true },
+  { id:'p39', name:'Bread and Tea', price:70, cat:'breakfast', icon:'fa-bread-slice', desc:'Toast with tea', available:true },
+];
+
+const DEFAULT_CATS = [
+  { id:'all', name:'All', icon:'fa-th-large' },
+  { id:'chips', name:'Chips & Fast Food', icon:'fa-french-fries' },
+  { id:'coffee', name:'Coffee', icon:'fa-mug-hot' },
+  { id:'tea', name:'Tea & Hot Drinks', icon:'fa-mug-saucer' },
+  { id:'juice', name:'Juices & Cold', icon:'fa-glass-water' },
+  { id:'breakfast', name:'Breakfast', icon:'fa-bread-slice' },
+];
+
+const DEFAULT_CONFIG = {
+  deliveryFee: 100,
+  freeDeliveryOver: 500,
+  minOrder: 200,
+  deliveryAreas: ['Digo Road','Nkrumah Road','Moi Avenue','Treasury Square',
+    'Makadara','Mwembe Tayari','Biashara Street','City Mall Area'],
+  openingHours: '8:00 AM - 10:00 PM',
+  pointsPerKsh: 10,
+  minOrderForPoints: 100,
+  voucherMinPoints: 100,
+  voucherRate: 1,
+  voucherExpiryDays: 30,
+  announcement: 'Today\'s Special: Chips + Chicken only KSh 250!',
+};
+
+// ---------- INITIALISE DB ----------
+function initDB() {
+  if (!DB.get('products')) DB.set('products', DEFAULT_PRODUCTS);
+  if (!DB.get('categories')) DB.set('categories', DEFAULT_CATS);
+  if (!DB.get('config')) DB.set('config', DEFAULT_CONFIG);
+  if (!DB.get('users')) DB.set('users', []);
+  if (!DB.get('orders')) DB.set('orders', []);
+  if (!DB.get('reviews')) DB.set('reviews', []);
+  if (!DB.get('suggestions')) DB.set('suggestions', []);
+  if (!DB.get('vouchers')) DB.set('vouchers', []);
+  if (!DB.get('pointsLedger')) DB.set('pointsLedger', []);
+  if (!DB.get('admins')) DB.set('admins', [
+    { id:'a1', name:'Admin', email:'up.cafe.ke@gmail.com', phone:'0141701000',
+      password: hash('@1adminup&cafe'), role:'admin' }
+  ]);
+  if (!DB.get('currentUser')) DB.set('currentUser', null);
+  if (!DB.get('currentAdmin')) DB.set('currentAdmin', null);
+  if (!DB.get('cart')) DB.set('cart', []);
+}
+
+// ---------- HASH (demo only) ----------
+function hash(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) { h = ((h << 5) - h) + s.charCodeAt(i); h |= 0; }
+  return 'h' + Math.abs(h).toString(16);
+}
+
+// ---------- HELPERS ----------
+function uid(prefix = '') { return prefix + Math.random().toString(36).substr(2, 9).toUpperCase(); }
+function fmt(n) { return 'KSh ' + Number(n).toLocaleString(); }
+function timeAgo(d) {
+  const s = Math.floor((Date.now() - new Date(d).getTime()) / 1000);
+  if (s < 60) return 'just now';
+  if (s < 3600) return Math.floor(s/60) + 'm ago';
+  if (s < 86400) return Math.floor(s/3600) + 'h ago';
+  return Math.floor(s/86400) + 'd ago';
+}
+function esc(s) {
+  const d = document.createElement('div'); d.textContent = s; return d.innerHTML;
+}
+
+// ---------- STATE ----------
+let state = {
+  user: null,
+  admin: null,
+  products: [],
+  categories: [],
+  config: {},
+  cart: [],
+  activeCat: 'all',
+  searchTerm: '',
+  adminTab: 'overview',
+  currentCheckoutId: null,
+  pollInterval: null,
+};
+
+// ---------- TOAST ----------
+function toast(msg, isError = false) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.className = 'toast show' + (isError ? ' error' : '');
+  t.querySelector('i').className = isError ? 'fas fa-exclamation-circle' : 'fas fa-check-circle';
+  clearTimeout(t._t);
+  t._t = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ---------- UPDATE CHECK ----------
+function checkForUpdates() {
+  const btn = document.getElementById('updateBtn');
+  btn.classList.add('spinning');
+  setTimeout(() => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('v', Date.now());
+    window.location.href = url.toString();
+  }, 800);
+}
+
+// ---------- SCREEN NAVIGATION ----------
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('screen-' + name);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const nav = document.querySelector(`.nav-item[data-nav="${name}"]`);
+  if (nav) nav.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (name === 'orders') renderOrders();
+  if (name === 'loyalty') renderLoyalty();
+  if (name === 'account') renderAccount();
+  if (name === 'admin') renderAdmin();
+}
+
+function goHome() {
+  showScreen('home');
+  renderProducts();
+  renderCats();
+  updateLoyaltyBanner();
+}
+
+function scrollToMenu() {
+  const el = document.querySelector('.cats');
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ---------- AUTH ----------
+function renderAuth(mode = 'login') {
+  const box = document.getElementById('authBox');
+  if (state.user) {
+    showScreen('account');
+    return;
+  }
+  if (mode === 'login') {
+    box.innerHTML = `
+      <h2><i class="fas fa-sign-in-alt" style="color:var(--caramel)"></i> Welcome Back</h2>
+      <p class="sub">Sign in to Up & Cafe</p>
+      <div class="form-group">
+        <label>Email or Phone</label>
+        <input type="text" id="loginId" placeholder="you@example.com or 07XX...">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPw" placeholder="Minimum 4 characters">
+      </div>
+      <div class="form-error" id="loginErr"></div>
+      <button class="btn-primary" onclick="doLogin()"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+      <p class="auth-switch">New here? <a onclick="renderAuth('register')">Create account</a></p>
+      <p class="auth-switch" style="margin-top:8px"><a onclick="renderAuth('admin')"><i class="fas fa-shield-alt"></i> Admin login</a></p>
+    `;
+  } else if (mode === 'register') {
+    box.innerHTML = `
+      <h2><i class="fas fa-user-plus" style="color:var(--caramel)"></i> Join Up & Cafe</h2>
+      <p class="sub">Get your loyalty card instantly</p>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="regName" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label>Email or Phone</label>
+        <input type="text" id="regId" placeholder="you@example.com or 07XX...">
+      </div>
+      <div class="form-group">
+        <label>Password (min 4 chars)</label>
+        <input type="password" id="regPw" placeholder="Minimum 4 characters">
+      </div>
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" id="regPw2" placeholder="Re-enter password">
+      </div>
+      <div class="form-error" id="regErr"></div>
+      <button class="btn-primary" onclick="doRegister()"><i class="fas fa-user-plus"></i> Create Account</button>
+      <p class="auth-switch">Already have an account? <a onclick="renderAuth('login')">Sign in</a></p>
+    `;
+  } else if (mode === 'admin') {
+    box.innerHTML = `
+      <h2><i class="fas fa-shield-alt" style="color:var(--caramel)"></i> Admin Login</h2>
+      <p class="sub">Authorised personnel only</p>
+      <div class="form-group">
+        <label>Admin Email</label>
+        <input type="email" id="adminEmail" placeholder="up.cafe.ke@gmail.com">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="adminPw" placeholder="Password">
+      </div>
+      <div class="form-error" id="adminErr"></div>
+      <button class="btn-primary" onclick="doAdminLogin()"><i class="fas fa-shield-alt"></i> Admin Sign In</button>
+      <p class="auth-switch"><a onclick="renderAuth('login')">← Customer login</a></p>
+    `;
+  }
+  showScreen('auth');
+}
+
+function doRegister() {
+  const name = document.getElementById('regName').value.trim();
+  const idRaw = document.getElementById('regId').value.trim();
+  const pw = document.getElementById('regPw').value;
+  const pw2 = document.getElementById('regPw2').value;
+  const err = document.getElementById('regErr');
+  err.classList.remove('show');
+
+  if (!name || !idRaw || !pw) { err.textContent = 'All fields required'; err.classList.add('show'); return; }
+  if (pw.length < 4) { err.textContent = 'Password must be at least 4 characters'; err.classList.add('show'); return; }
+  if (pw !== pw2) { err.textContent = 'Passwords do not match'; err.classList.add('show'); return; }
+
+  const isEmail = idRaw.includes('@');
+  const users = DB.get('users', []);
+  const exists = users.find(u => (isEmail ? u.email === idRaw : u.phone === idRaw));
+  if (exists) { err.textContent = 'Account already exists. Please sign in.'; err.classList.add('show'); return; }
+
+  const user = {
+    id: uid('U'),
+    name,
+    email: isEmail ? idRaw : '',
+    phone: isEmail ? '' : idRaw,
+    password: hash(pw),
+    cardNumber: 'UC' + Date.now().toString().slice(-8) + Math.floor(Math.random()*100),
+    points: 0,
+    status: 'active',
+    createdAt: new Date().toISOString(),
+  };
+  users.push(user);
+  DB.set('users', users);
+  DB.set('currentUser', user);
+  state.user = user;
+  toast('Welcome to Up & Cafe, ' + name.split(' ')[0] + '!');
+  goHome();
+}
+
+function doLogin() {
+  const idRaw = document.getElementById('loginId').value.trim();
+  const pw = document.getElementById('loginPw').value;
+  const err = document.getElementById('loginErr');
+  err.classList.remove('show');
+  if (!idRaw || !pw) { err.textContent = 'Enter email/phone and password'; err.classList.add('show'); return; }
+
+  const isEmail = idRaw.includes('@');
+  const users = DB.get('users', []);
+  const user = users.find(u =>
+    (isEmail ? u.email === idRaw : u.phone === idRaw) && u.password === hash(pw)
+  );
+  if (!user) { err.textContent = 'Invalid credentials'; err.classList.add('show'); return; }
+  if (user.status === 'suspended') { err.textContent = 'Account suspended. Contact support.'; err.classList.add('show'); return; }
+
+  DB.set('currentUser', user);
+  state.user = user;
+  toast('Welcome back, ' + user.name.split(' ')[0] + '!');
+  goHome();
+}
+
+function doAdminLogin() {
+  const email = document.getElementById('adminEmail').value.trim();
+  const pw = document.getElementById('adminPw').value;
+  const err = document.getElementById('adminErr');
+  err.classList.remove('show');
+
+  const admins = DB.get('admins', []);
+  const admin = admins.find(a => a.email === email && a.password === hash(pw));
+  if (!admin) { err.textContent = 'Invalid admin credentials'; err.classList.add('show'); return; }
+
+  DB.set('currentAdmin', admin);
+  state.admin = admin;
+  toast('Admin access granted');
+  showScreen('admin');
+}
+
+function logout() {
+  DB.set('currentUser', null);
+  state.user = null;
+  toast('Signed out');
+  goHome();
+}
+
+function adminLogout() {
+  DB.set('currentAdmin', null);
+  state.admin = null;
+  toast('Admin signed out');
+  showScreen('home');
+}
+
+// ---------- PRODUCTS ----------
+function loadProducts() {
+  state.products = DB.get('products', []);
+  state.categories = DB.get('categories', []);
+  state.config = DB.get('config', DEFAULT_CONFIG);
+}
+
+function renderCats() {
+  const wrap = document.getElementById('catTabs');
+  wrap.innerHTML = state.categories.map(c => `
+    <button class="cat-btn ${state.activeCat === c.id ? 'active' : ''}"
+      onclick="setCat('${c.id}')">
+      <i class="fas ${c.icon}"></i>${esc(c.name)}
+    </button>
+  `).join('');
+}
+
+function setCat(id) {
+  state.activeCat = id;
+  document.getElementById('currentCatLabel').textContent =
+    id === 'all' ? 'All Products' : (state.categories.find(c => c.id === id)?.name || 'Menu');
+  renderCats();
+  renderProducts();
+}
+
+function renderProducts() {
+  const grid = document.getElementById('productGrid');
+  if (!grid) return;
+  let list = state.products.filter(p => state.activeCat === 'all' || p.cat === state.activeCat);
+  if (state.searchTerm) {
+    const q = state.searchTerm.toLowerCase();
+    list = state.products.filter(p =>
+      p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) ||
+      p.cat.toLowerCase().includes(q)
+    );
+  }
+  if (list.length === 0) {
+    grid.innerHTML = '<div class="empty" style="grid-column:1/-1"><i class="fas fa-search"></i><h3>No products found</h3><p>Try a different search</p></div>';
+    return;
+  }
+  grid.innerHTML = list.map(p => `
+    <div class="card ${!p.available ? 'disabled' : ''}">
+      <div class="card-img">
+        <i class="fas ${p.icon}"></i>
+        ${p.isNew ? '<span class="card-badge new">New</span>' : ''}
+        ${p.discount ? `<span class="card-badge">-${p.discount}%</span>` : ''}
+      </div>
+      <div class="card-body">
+        <div class="card-name">${esc(p.name)}</div>
+        <div class="card-desc">${esc(p.desc)}</div>
+        <div class="card-foot">
+          <div class="card-price">${fmt(p.discount ? Math.round(p.price * (1 - p.discount/100)) : p.price)}</div>
+          <button class="add-btn" onclick="addToCart('${p.id}')" ${!p.available ? 'disabled' : ''}>
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterProducts() {
+  const inp = document.getElementById('searchInput');
+  state.searchTerm = inp ? inp.value.trim() : '';
+  renderProducts();
+}
+
+// ---------- CART ----------
+function addToCart(productId) {
+  const p = state.products.find(x => x.id === productId);
+  if (!p || !p.available) return toast('Product unavailable', true);
+  const cart = DB.get('cart', []);
+  const item = cart.find(c => c.productId === productId);
+  if (item) item.qty += 1;
+  else cart.push({ productId, qty: 1 });
+  DB.set('cart', cart);
+  state.cart = cart;
+  updateCartBadge();
+  toast(p.name + ' added to cart');
+}
+
+function removeFromCart(productId) {
+  let cart = DB.get('cart', []);
+  cart = cart.filter(c => c.productId !== productId);
+  DB.set('cart', cart);
+  state.cart = cart;
+  updateCartBadge();
+  renderCart();
+}
+
+function updateQty(productId, delta) {
+  const cart = DB.get('cart', []);
+  const item = cart.find(c => c.productId === productId);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) { removeFromCart(productId); return; }
+  DB.set('cart', cart);
+  state.cart = cart;
+  updateCartBadge();
+  renderCart();
+}
+
+function updateCartBadge() {
+  const cart = DB.get('cart', []);
+  const count = cart.reduce((s, c) => s + c.qty, 0);
+  const badge = document.getElementById('cartBadge');
+  if (badge) { badge.textContent = count; badge.style.display = count > 0 ? 'flex' : 'none'; }
+}
+
+function openCart() { 
+  document.getElementById('drawerOverlay').classList.add('open');
+  document.getElementById('cartDrawer').classList.add('open');
+  renderCart();
+}
+function closeCart() {
+  document.getElementById('drawerOverlay').classList.remove('open');
+  document.getElementById('cartDrawer').classList.remove('open');
+}
+
+function cartTotals() {
+  const cart = DB.get('cart', []);
+  let subtotal = 0;
+  cart.forEach(c => {
+    const p = state.products.find(x => x.id === c.productId);
+    if (p) {
+      const price = p.discount ? Math.round(p.price * (1 - p.discount/100)) : p.price;
+      subtotal += price * c.qty;
+    }
+  });
+  const cfg = state.config;
+  const deliveryFee = subtotal >= cfg.freeDeliveryOver ? 0 : cfg.deliveryFee;
+  return { subtotal, deliveryFee, total: subtotal + deliveryFee };
+}
+
+function renderCart() {
+  const body = document.getElementById('cartBody');
+  const foot = document.getElementById('cartFoot');
+  const cart = DB.get('cart', []);
+  if (cart.length === 0) {
+    body.innerHTML = '<div class="cart-empty"><i class="fas fa-shopping-bag"></i><h3>Your cart is empty</h3><p>Add items from the menu</p></div>';
+    foot.innerHTML = '';
+    return;
+  }
+  body.innerHTML = cart.map(c => {
+    const p = state.products.find(x => x.id === c.productId);
+    if (!p) return '';
+    const price = p.discount ? Math.round(p.price * (1 - p.discount/100)) : p.price;
+    return `
+      <div class="cart-item">
+        <div class="cart-item-img"><i class="fas ${p.icon}"></i></div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${esc(p.name)}</div>
+          <div class="cart-item-price">${fmt(price)}</div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="qty-control">
+              <button class="qty-btn" onclick="updateQty('${p.id}',-1)">−</button>
+              <span class="qty-val">${c.qty}</span>
+              <button class="qty-btn" onclick="updateQty('${p.id}',1)">+</button>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart('${p.id}')"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  const t = cartTotals();
+  foot.innerHTML = `
+    <div class="cart-totals">
+      <div class="cart-row"><span>Subtotal</span><span>${fmt(t.subtotal)}</span></div>
+      <div class="cart-row"><span>Delivery${t.deliveryFee === 0 ? ' (FREE)' : ''}</span><span>${t.deliveryFee === 0 ? 'KSh 0' : fmt(t.deliveryFee)}</span></div>
+      <div class="cart-row total"><span>Total</span><span>${fmt(t.total)}</span></div>
+    </div>
+    <button class="btn-primary" onclick="openCheckout()">Proceed to Checkout <i class="fas fa-arrow-right"></i></button>
+  `;
+}
+
+// ---------- CHECKOUT ----------
+function openCheckout() {
+  if (!state.user) { toast('Please sign in to checkout', true); closeCart(); showScreen('account'); return; }
+  if (DB.get('cart', []).length === 0) { toast('Cart is empty', true); return; }
+  const t = cartTotals();
+  const cfg = state.config;
+  const areasOptions = cfg.deliveryAreas.map(a => `<option value="${esc(a)}">${esc(a)}</option>`).join('');
+  document.getElementById('checkoutBody').innerHTML = `
+    <div style="background:var(--cream);border-radius:12px;padding:14px;margin-bottom:16px">
+      <div style="font-size:.8rem;color:var(--gray);margin-bottom:6px">Order Summary</div>
+      <div style="display:flex;justify-content:space-between;font-size:.9rem"><span>Subtotal</span><strong>${fmt(t.subtotal)}</strong></div>
+      <div style="display:flex;justify-content:space-between;font-size:.9rem;margin-top:4px"><span>Delivery</span><strong>${t.deliveryFee === 0 ? 'FREE' : fmt(t.deliveryFee)}</strong></div>
+      <div style="display:flex;justify-content:space-between;font-size:1rem;margin-top:8px;padding-top:8px;border-top:1px dashed #ddd"><span><strong>Total</strong></span><strong style="color:var(--caramel)">${fmt(t.total)}</strong></div>
+    </div>
+
+    <h3 style="font-size:.9rem;margin-bottom:10px"><i class="fas fa-truck" style="color:var(--caramel)"></i> Delivery Method</h3>
+    <div class="pay-option selected" onclick="selectDelivery(this,'delivery')">
+      <div class="pay-icon"><i class="fas fa-truck"></i></div>
+      <div class="pay-info"><strong>Delivery</strong><small>Mombasa CBD only</small></div>
+      <input type="radio" name="deliveryType" value="delivery" checked>
+    </div>
+    <div class="pay-option" onclick="selectDelivery(this,'pickup')">
+      <div class="pay-icon cash"><i class="fas fa-store"></i></div>
+      <div class="pay-info"><strong>Pickup</strong><small>Collect from the cafe</small></div>
+      <input type="radio" name="deliveryType" value="pickup">
+    </div>
+
+    <div id="deliveryFields">
+      <h3 style="font-size:.9rem;margin:16px 0 10px"><i class="fas fa-map-marker-alt" style="color:var(--caramel)"></i> Delivery Details</h3>
+      <div class="form-group">
+        <label>Area (Mombasa CBD)</label>
+        <select id="coArea">${areasOptions}</select>
+      </div>
+      <div class="form-group">
+        <label>Building / Street / Landmark</label>
+        <input type="text" id="coAddress" placeholder="e.g. City Mall, 2nd floor">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="coPhone" value="${esc(state.user.phone || '')}" placeholder="07XX XXX XXX">
+      </div>
+      <div class="form-group">
+        <label>Additional Directions (optional)</label>
+        <textarea id="coNotes" placeholder="Any special instructions"></textarea>
+      </div>
+    </div>
+
+    <h3 style="font-size:.9rem;margin:16px 0 10px"><i class="fas fa-credit-card" style="color:var(--caramel)"></i> Payment Method</h3>
+    <div class="pay-option selected" onclick="selectPay(this,'mpesa')">
+      <div class="pay-icon mpesa"><i class="fas fa-mobile-alt"></i></div>
+      <div class="pay-info"><strong>M-Pesa</strong><small>PayBill ${MPESA_SHORTCODE} — ${MPESA_NAME}</small></div>
+      <input type="radio" name="payMethod" value="mpesa" checked>
+    </div>
+    <div class="pay-option" onclick="selectPay(this,'cash')">
+      <div class="pay-icon cash"><i class="fas fa-money-bill-wave"></i></div>
+      <div class="pay-info"><strong>Cash</strong><small>On delivery / pickup</small></div>
+      <input type="radio" name="payMethod" value="cash">
+    </div>
+
+    <div id="mpesaField" style="margin-top:12px">
+      <div class="form-group">
+        <label>M-Pesa Phone Number</label>
+        <input type="tel" id="coMpesa" placeholder="07XX XXX XXX" value="${esc(state.user.phone || '')}">
+      </div>
+      <p style="font-size:.75rem;color:var(--gray);text-align:center">
+        <i class="fas fa-lock"></i> You'll receive an STK push prompt. Never share your PIN.
+      </p>
+    </div>
+  `;
+  closeCart();
+  document.getElementById('checkoutModal').classList.add('open');
+}
+
+function selectDelivery(el, type) {
+  document.querySelectorAll('#checkoutBody .pay-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+  document.getElementById('deliveryFields').style.display = type === 'delivery' ? 'block' : 'none';
+}
+
+function selectPay(el, method) {
+  const parent = el.parentElement;
+  parent.querySelectorAll('.pay-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+  document.getElementById('mpesaField').style.display = method === 'mpesa' ? 'block' : 'none';
+}
+
+// ---------- PROCESS PAYMENT (M-Pesa STK Push) ----------
+async function processPayment() {
+  const deliveryType = document.querySelector('input[name="deliveryType"]:checked')?.value;
+  const payMethod = document.querySelector('input[name="payMethod"]:checked')?.value;
+  const t = cartTotals();
+  const cfg = state.config;
+  const cart = DB.get('cart', []);
+
+  if (deliveryType === 'delivery') {
+    const phone = document.getElementById('coPhone')?.value.trim();
+    const address = document.getElementById('coAddress')?.value.trim();
+    if (!phone || !address) { toast('Please fill delivery details', true); return; }
+  }
+
+  const orderId = 'UC-' + Date.now().toString().slice(-8);
+  const items = cart.map(c => {
+    const p = state.products.find(x => x.id === c.productId);
+    const price = p.discount ? Math.round(p.price * (1 - p.discount/100)) : p.price;
+    return { productId: p.id, name: p.name, price, qty: c.qty, subtotal: price * c.qty };
+  });
+
+  // Points will be awarded after delivery
+  const eligibleAmount = t.subtotal;
+  let pointsEarned = 0;
+  if (eligibleAmount > cfg.minOrderForPoints) {
+    pointsEarned = Math.floor(eligibleAmount / cfg.pointsPerKsh);
+  }
+
+  // If CASH: create order as confirmed, admin will process
+  if (payMethod === 'cash') {
+    const order = {
+      id: orderId,
+      userId: state.user.id,
+      items,
+      subtotal: t.subtotal,
+      deliveryFee: t.deliveryFee,
+      total: t.total,
+      deliveryType,
+      payMethod: 'cash',
+      paymentStatus: 'unpaid',
+      status: 'confirmed', // Admin sees it immediately
+      pointsEarned: pointsEarned,
+      pointsAwarded: false,
+      deliveryAddress: deliveryType === 'delivery' ? {
+        area: document.getElementById('coArea')?.value,
+        address: document.getElementById('coAddress')?.value,
+        phone: document.getElementById('coPhone')?.value,
+        notes: document.getElementById('coNotes')?.value || '',
+      } : null,
+      createdAt: new Date().toISOString(),
+    };
+    const orders = DB.get('orders', []);
+    orders.unshift(order);
+    DB.set('orders', orders);
+    DB.set('cart', []);
+    state.cart = [];
+    updateCartBadge();
+
+    document.getElementById('successMsg').textContent = 'Cash order confirmed. Admin is preparing it.';
+    document.getElementById('successOrderId').textContent = orderId;
+    document.getElementById('successTotal').textContent = fmt(order.total);
+    closeModal('checkoutModal');
+    document.getElementById('successModal').classList.add('open');
+    return;
+  }
+
+  // MPESA: Initiate STK push
+  const mp = document.getElementById('coMpesa')?.value.trim();
+  if (!mp || mp.length < 9) { toast('Enter a valid M-Pesa number', true); return; }
+
+  const payBtn = document.getElementById('payBtn');
+  payBtn.disabled = true;
+  payBtn.textContent = 'Sending STK push...';
+
+  try {
+    const res = await fetch(`${API_BASE}/api/mpesa/stkpush`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: mp, amount: t.total, orderId }),
+    });
+
+    const data = await res.json();
+    if (!data.success) throw new Error(data.details || data.error || 'STK Push failed');
+
+    // Save order as pending_payment
+    const order = {
+      id: orderId,
+      userId: state.user.id,
+      items,
+      subtotal: t.subtotal,
+      deliveryFee: t.deliveryFee,
+      total: t.total,
+      deliveryType,
+      payMethod: 'mpesa',
+      paymentStatus: 'unpaid',
+      status: 'pending_payment',
+      pointsEarned: pointsEarned,
+      pointsAwarded: false,
+      checkoutRequestId: data.CheckoutRequestID,
+      deliveryAddress: deliveryType === 'delivery' ? {
+        area: document.getElementById('coArea')?.value,
+        address: document.getElementById('coAddress')?.value,
+        phone: document.getElementById('coPhone')?.value,
+        notes: document.getElementById('coNotes')?.value || '',
+      } : null,
+      createdAt: new Date().toISOString(),
+    };
+    const orders = DB.get('orders', []);
+    orders.unshift(order);
+    DB.set('orders', orders);
+
+    closeModal('checkoutModal');
+    document.getElementById('processingOverlay').classList.add('open');
+    state.currentCheckoutId = data.CheckoutRequestID;
+    state.pollInterval = setInterval(() => pollPaymentStatus(data.CheckoutRequestID, orderId), 3000);
+    setTimeout(() => {
+      if (state.pollInterval) {
+        clearInterval(state.pollInterval);
+        state.pollInterval = null;
+        document.getElementById('processingOverlay').classList.remove('open');
+        payBtn.disabled = false;
+        payBtn.textContent = 'Place Order & Pay';
+        toast('Payment timed out. Check your M-Pesa messages.', true);
+      }
+    }, 90000);
+  } catch (err) {
+    payBtn.disabled = false;
+    payBtn.textContent = 'Place Order & Pay';
+    toast(err.message || 'Payment failed', true);
+    console.error(err);
+  }
+}
+
+async function pollPaymentStatus(checkoutId, orderId) {
+  try {
+    const res = await fetch(`${API_BASE}/api/mpesa/status/${checkoutId}`);
+    const data = await res.json();
+    if (data.status === 'success') {
+      clearInterval(state.pollInterval);
+      state.pollInterval = null;
+      document.getElementById('processingOverlay').classList.remove('open');
+
+      // Update order to confirmed
+      const orders = DB.get('orders', []);
+      const idx = orders.findIndex(o => o.id === orderId);
+      if (idx >= 0) {
+        orders[idx].paymentStatus = 'paid';
+        orders[idx].status = 'confirmed';
+        orders[idx].mpesaReceipt = data.receipt;
+        DB.set('orders', orders);
+
+        // Notify admin (via console — in production, push notification)
+        console.log(`💰 Payment received | Order: ${orderId} | Receipt: ${data.receipt}`);
+      }
+
+      DB.set('cart', []);
+      state.cart = [];
+      updateCartBadge();
+
+      document.getElementById('successMsg').textContent = 'Payment received. Admin is preparing your order.';
+      document.getElementById('successOrderId').textContent = orderId;
+      document.getElementById('successTotal').textContent = fmt(orders[idx]?.total || 0);
+      document.getElementById('successModal').classList.add('open');
+      document.getElementById('payBtn').disabled = false;
+      document.getElementById('payBtn').textContent = 'Place Order & Pay';
+    } else if (data.status === 'failed') {
+      clearInterval(state.pollInterval);
+      state.pollInterval = null;
+      document.getElementById('processingOverlay').classList.remove('open');
+      toast('Payment failed: ' + (data.reason || 'Try again'), true);
+      document.getElementById('payBtn').disabled = false;
+      document.getElementById('payBtn').textContent = 'Place Order & Pay';
+
+      // Mark order as cancelled
+      const orders = DB.get('orders', []);
+      const idx = orders.findIndex(o => o.id === orderId);
+      if (idx >= 0) {
+        orders[idx].status = 'cancelled';
+        orders[idx].paymentStatus = 'unpaid';
+        DB.set('orders', orders);
+      }
+    }
+  } catch (err) {
+    console.error('Poll error:', err);
+  }
+}
+
+function cancelPayment() {
+  if (state.pollInterval) {
+    clearInterval(state.pollInterval);
+    state.pollInterval = null;
+  }
+  document.getElementById('processingOverlay').classList.remove('open');
+  document.getElementById('payBtn').disabled = false;
+  document.getElementById('payBtn').textContent = 'Place Order & Pay';
+  toast('Payment cancelled. You can try again.');
+}
+
+// ---------- POINTS AWARD ----------
+function awardPoints(user, order, points) {
+  const users = DB.get('users', []);
+  const idx = users.findIndex(u => u.id === user.id);
+  if (idx < 0) return;
+  users[idx].points = (users[idx].points || 0) + points;
+  DB.set('users', users);
+  state.user = users[idx];
+  DB.set('currentUser', users[idx]);
+
+  const ledger = DB.get('pointsLedger', []);
+  ledger.unshift({
+    id: uid('PL'),
+    userId: user.id,
+    cardNumber: user.cardNumber,
+    orderRef: order.id,
+    amount: order.subtotal,
+    points,
+    type: 'earned',
+    date: new Date().toISOString(),
+  });
+  DB.set('pointsLedger', ledger);
+
+  const orders = DB.get('orders', []);
+  const oIdx = orders.findIndex(o => o.id === order.id);
+  if (oIdx >= 0) { orders[oIdx].pointsAwarded = true; DB.set('orders', orders); }
+}
+
+// ---------- CUSTOMER MARK AS DELIVERED ----------
+function markAsDelivered(orderId) {
+  const orders = DB.get('orders', []);
+  const idx = orders.findIndex(o => o.id === orderId);
+  if (idx < 0) return;
+  
+  const order = orders[idx];
+  if (order.status !== 'delivery') {
+    toast('Order is not out for delivery yet', true);
+    return;
+  }
+  
+  order.status = 'delivered';
+  DB.set('orders', orders);
+
+  if (!order.pointsAwarded && order.pointsEarned > 0) {
+    const user = DB.get('users', []).find(u => u.id === order.userId);
+    if (user) awardPoints(user, order, order.pointsEarned);
+  }
+
+  toast('Order marked as delivered! Enjoy your meal.');
+  renderOrders();
+  if (state.user) {
+    state.user = DB.get('users', []).find(u => u.id === state.user.id);
+    DB.set('currentUser', state.user);
+    updateLoyaltyBanner();
+  }
+}
+
+// ---------- LOYALTY ----------
+function updateLoyaltyBanner() {
+  const banner = document.getElementById('homeLoyalty');
+  const pts = document.getElementById('homePoints');
+  if (state.user) {
+    banner.style.display = 'flex';
+    pts.textContent = state.user.points || 0;
+  } else {
+    banner.style.display = 'none';
+  }
+}
+
+function renderLoyalty() {
+  const wrap = document.getElementById('loyaltyCardWrap');
+  if (!state.user) {
+    wrap.innerHTML = `<div class="empty"><i class="fas fa-crown"></i><h3>Sign in to view your loyalty card</h3><p>Create an account to start earning points</p><button class="btn-primary" style="margin-top:16px;max-width:200px" onclick="renderAuth('register')">Sign Up</button></div>`;
+    document.getElementById('vouchersList').innerHTML = '';
+    document.getElementById('pointsHistory').innerHTML = '';
+    return;
+  }
+  const u = state.user;
+  const regDate = new Date(u.createdAt).toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'});
+  wrap.innerHTML = `
+    <div class="loyalty-card">
+      <div class="loyalty-card-head">
+        <div class="brand">UP & CAFE<small>Loyalty Card</small></div>
+        <div class="status">${u.status === 'active' ? 'Active' : 'Suspended'}</div>
+      </div>
+      <div class="loyalty-card-num">${u.cardNumber.match(/.{1,4}/g).join(' ')}</div>
+      <div class="loyalty-card-name">${esc(u.name)}</div>
+      <div class="loyalty-card-meta">
+        <div class="loyalty-card-points">
+          <div class="num">${u.points || 0}</div>
+          <div class="lbl">Points</div>
+        </div>
+        <div class="loyalty-card-qr"><i class="fas fa-qrcode"></i></div>
+      </div>
+      <div class="loyalty-card-date">Member since ${regDate}</div>
+    </div>
+  `;
+
+  const vouchers = DB.get('vouchers', []).filter(v => v.userId === u.id);
+  const vwrap = document.getElementById('vouchersList');
+  if (vouchers.length === 0) {
+    vwrap.innerHTML = '<div class="empty" style="padding:20px"><i class="fas fa-ticket-alt"></i><p style="font-size:.85rem">No vouchers yet. Earn 100+ points to redeem.</p></div>';
+  } else {
+    vwrap.innerHTML = vouchers.map(v => `
+      <div class="voucher">
+        <div class="voucher-info">
+          <strong>${fmt(v.amount)} Voucher</strong>
+          <small>Expires ${new Date(v.expiry).toLocaleDateString()}</small>
+        </div>
+        <div class="voucher-code">${v.code}</div>
+      </div>
+    `).join('');
+  }
+
+  const ledger = DB.get('pointsLedger', []).filter(l => l.userId === u.id);
+  const hist = document.getElementById('pointsHistory');
+  if (ledger.length === 0) {
+    hist.innerHTML = '<div class="empty" style="padding:20px"><i class="fas fa-history"></i><p style="font-size:.85rem">No transactions yet</p></div>';
+  } else {
+    hist.innerHTML = ledger.map(l => `
+      <div class="list-item">
+        <div class="list-item-img" style="background:${l.type==='earned'?'#E8F5E9':'#FFF3E0'};color:${l.type==='earned'?'var(--green)':'var(--caramel)'}">
+          <i class="fas ${l.type==='earned'?'fa-plus':'fa-minus'}"></i>
+        </div>
+        <div class="list-item-info">
+          <strong>${l.type==='earned'?'+':'-'}${l.points} points</strong>
+          <small>Order ${l.orderRef} • ${timeAgo(l.date)}</small>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+function redeemVoucher() {
+  if (!state.user) { toast('Sign in first', true); return; }
+  const inp = document.getElementById('redeemPoints');
+  const pts = parseInt(inp.value);
+  const cfg = state.config;
+  if (!pts || pts < cfg.voucherMinPoints) {
+    toast('Minimum ' + cfg.voucherMinPoints + ' points required', true); return;
+  }
+  if (pts % 100 !== 0) { toast('Points must be in multiples of 100', true); return; }
+  if ((state.user.points || 0) < pts) { toast('Not enough points', true); return; }
+
+  const amount = (pts / 100) * 100;
+  const code = 'UCV-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+  const expiry = new Date(Date.now() + cfg.voucherExpiryDays * 86400000).toISOString();
+
+  const vouchers = DB.get('vouchers', []);
+  vouchers.unshift({ id: uid('V'), userId: state.user.id, code, amount, expiry,
+    used: false, createdAt: new Date().toISOString() });
+  DB.set('vouchers', vouchers);
+
+  const users = DB.get('users', []);
+  const idx = users.findIndex(u => u.id === state.user.id);
+  users[idx].points -= pts;
+  DB.set('users', users);
+  state.user = users[idx];
+  DB.set('currentUser', users[idx]);
+
+  const ledger = DB.get('pointsLedger', []);
+  ledger.unshift({ id: uid('PL'), userId: state.user.id, cardNumber: state.user.cardNumber,
+    orderRef: 'VOUCHER-' + code, amount: 0, points: pts, type: 'redeemed',
+    date: new Date().toISOString() });
+  DB.set('pointsLedger', ledger);
+
+  inp.value = '';
+  toast('Voucher created: ' + code);
+  renderLoyalty();
+  updateLoyaltyBanner();
+}
+
+// ---------- ORDERS (CUSTOMER VIEW) ----------
+function renderOrders() {
+  const wrap = document.getElementById('ordersList');
+  if (!state.user) {
+    wrap.innerHTML = '<div class="empty"><i class="fas fa-receipt"></i><h3>Sign in to view orders</h3><button class="btn-primary" style="margin-top:16px;max-width:200px" onclick="renderAuth(\'login\')">Sign In</button></div>';
+    return;
+  }
+  const orders = DB.get('orders', []).filter(o => o.userId === state.user.id);
+  if (orders.length === 0) {
+    wrap.innerHTML = '<div class="empty"><i class="fas fa-receipt"></i><h3>No orders yet</h3><p>Your order history will appear here</p></div>';
+    return;
+  }
+  wrap.innerHTML = orders.map(o => {
+    const showMarkDelivered = o.status === 'delivery';
+    
+    let statusLabel = o.status;
+    if (o.status === 'pending_payment') statusLabel = 'Awaiting Payment';
+    if (o.status === 'confirmed') statusLabel = 'Confirmed';
+    if (o.status === 'delivery') statusLabel = 'Out for Delivery';
+    if (o.status === 'delivered') statusLabel = 'Delivered';
+
+    return `
+    <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div>
+          <strong style="font-size:.95rem">${o.id}</strong>
+          <div style="font-size:.75rem;color:var(--gray)">${new Date(o.createdAt).toLocaleString()}</div>
+        </div>
+        <span class="pill ${o.status}">${statusLabel}</span>
+      </div>
+      <div style="font-size:.85rem;color:var(--gray);margin-bottom:10px">
+        ${o.items.map(i => `${i.qty}× ${esc(i.name)}`).join(', ')}
+      </div>
+      
+      ${showMarkDelivered ? `
+      <div style="background:var(--cream);border-radius:12px;padding:12px;margin-bottom:10px;text-align:center">
+        <p style="font-size:.8rem;color:var(--gray);margin-bottom:8px">Have you received your order?</p>
+        <button class="btn-primary" style="padding:10px;font-size:.9rem" onclick="markAsDelivered('${o.id}')">
+          <i class="fas fa-check-circle"></i> Mark as Delivered
+        </button>
+      </div>` : ''}
+
+      <div style="display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px dashed #eee">
+        <div>
+          <span class="pill ${o.paymentStatus}">${o.paymentStatus}</span>
+          ${o.pointsAwarded && o.pointsEarned > 0 ? `<span style="font-size:.75rem;color:var(--green);margin-left:6px">+${o.pointsEarned} pts</span>` : ''}
+          ${!o.pointsAwarded && o.pointsEarned > 0 ? `<span style="font-size:.75rem;color:var(--gray);margin-left:6px">(${o.pointsEarned} pts on delivery)</span>` : ''}
+        </div>
+        <strong style="color:var(--caramel)">${fmt(o.total)}</strong>
+      </div>
+    </div>
+  `}).join('');
+}
+
+// ---------- ACCOUNT ----------
+function renderAccount() {
+  const wrap = document.getElementById('accountContent');
+  if (!state.user) {
+    renderAuth('login');
+    return;
+  }
+  const u = state.user;
+  wrap.innerHTML = `
+    <div style="background:#fff;border-radius:18px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
+        <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--caramel));display:flex;align-items:center;justify-content:center;color:var(--choc);font-size:1.4rem;font-weight:800">
+          ${u.name.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase()}
+        </div>
+        <div>
+          <div style="font-weight:800;font-size:1.05rem">${esc(u.name)}</div>
+          <div style="color:var(--gray);font-size:.82rem">${esc(u.email || u.phone)}</div>
+          <div style="color:var(--caramel);font-size:.75rem;font-weight:700;margin-top:2px">${u.cardNumber}</div>
+        </div>
+      </div>
+      <div style="border-top:1px solid var(--cream);padding-top:14px">
+        <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:.88rem"><span>Loyalty Points</span><strong>${u.points || 0}</strong></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:.88rem"><span>Total Orders</span><strong>${DB.get('orders',[]).filter(o=>o.userId===u.id).length}</strong></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:.88rem"><span>Member Since</span><strong>${new Date(u.createdAt).toLocaleDateString()}</strong></div>
+      </div>
+    </div>
+    <button class="btn-secondary" style="margin-bottom:10px" onclick="showScreen('loyalty')"><i class="fas fa-crown"></i> View Loyalty Card</button>
+    <button class="btn-secondary" style="margin-bottom:10px" onclick="showScreen('orders')"><i class="fas fa-receipt"></i> Order History</button>
+    <button class="btn-secondary" style="margin-bottom:10px" onclick="openReviewForm()"><i class="fas fa-star"></i> Leave a Review</button>
+    <button class="btn-secondary" style="margin-bottom:10px" onclick="openSuggestionForm()"><i class="fas fa-comment-dots"></i> Submit Suggestion</button>
+    <button class="btn-secondary" style="background:var(--red);margin-bottom:10px" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+    <div style="text-align:center;color:var(--gray);font-size:.8rem;margin-top:20px">
+      <p>UP & CAFE © 2025</p>
+      <p style="margin-top:4px">up.cafe.ke@gmail.com • 0141701000</p>
+    </div>
+  `;
+}
+
+function openReviewForm() {
+  document.getElementById('editTitle').textContent = 'Leave a Review';
+  document.getElementById('editBody').innerHTML = `
+    <div class="form-group">
+      <label>Rating</label>
+      <select id="reviewRating">
+        <option value="5">★★★★★ Excellent</option>
+        <option value="4">★★★★ Good</option>
+        <option value="3">★★★ Average</option>
+        <option value="2">★★ Poor</option>
+        <option value="1">★ Terrible</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Your Review</label>
+      <textarea id="reviewText" placeholder="Tell us about your experience..."></textarea>
+    </div>
+    <p style="font-size:.75rem;color:var(--gray)"><i class="fas fa-info-circle"></i> Reviews are moderated before publishing.</p>
+  `;
+  document.getElementById('editModal').dataset.action = 'review';
+  document.getElementById('editModal').classList.add('open');
+}
+
+function openSuggestionForm() {
+  document.getElementById('editTitle').textContent = 'Submit Suggestion';
+  document.getElementById('editBody').innerHTML = `
+    <div class="form-group">
+      <label>Your Suggestion</label>
+      <textarea id="suggestionText" placeholder="Any suggestions for Up & Cafe?"></textarea>
+    </div>
+    <p style="font-size:.75rem;color:var(--gray)"><i class="fas fa-lock"></i> Suggestions are private to administrators.</p>
+  `;
+  document.getElementById('editModal').dataset.action = 'suggestion';
+  document.getElementById('editModal').classList.add('open');
+}
+
+// ---------- ADMIN ----------
+function renderAdmin() {
+  if (!state.admin) {
+    renderAuth('admin');
+    return;
+  }
+  const tabs = [
+    { id:'overview', label:'Overview', icon:'fa-chart-pie' },
+    { id:'products', label:'Products', icon:'fa-box' },
+    { id:'orders', label:'Orders', icon:'fa-receipt' },
+    { id:'customers', label:'Customers', icon:'fa-users' },
+    { id:'loyalty', label:'Loyalty', icon:'fa-crown' },
+    { id:'reviews', label:'Reviews', icon:'fa-star' },
+    { id:'suggestions', label:'Suggestions', icon:'fa-comment-dots' },
+    { id:'settings', label:'Settings', icon:'fa-cog' },
+  ];
+  document.getElementById('adminTabs').innerHTML = tabs.map(t =>
+    `<button class="admin-tab ${state.adminTab===t.id?'active':''}" onclick="setAdminTab('${t.id}')"><i class="fas ${t.icon}"></i> ${t.label}</button>`
+  ).join('');
+  const content = document.getElementById('adminContent');
+  if (state.adminTab === 'overview') renderAdminOverview(content);
+  else if (state.adminTab === 'products') renderAdminProducts(content);
+  else if (state.adminTab === 'orders') renderAdminOrders(content);
+  else if (state.adminTab === 'customers') renderAdminCustomers(content);
+  else if (state.adminTab === 'loyalty') renderAdminLoyalty(content);
+  else if (state.adminTab === 'reviews') renderAdminReviews(content);
+  else if (state.adminTab === 'suggestions') renderAdminSuggestions(content);
+  else if (state.adminTab === 'settings') renderAdminSettings(content);
+}
+
+function setAdminTab(id) { state.adminTab = id; renderAdmin(); }
+
+function renderAdminOverview(el) {
+  const orders = DB.get('orders', []);
+  const users = DB.get('users', []);
+  const today = new Date().toDateString();
+  const todayOrders = orders.filter(o => new Date(o.createdAt).toDateString() === today);
+  const todaySales = todayOrders.reduce((s,o) => s + o.total, 0);
+  const pending = orders.filter(o => o.status === 'pending_payment' || o.status === 'confirmed').length;
+  const completed = orders.filter(o => o.status === 'delivered').length;
+  const reviews = DB.get('reviews', []).filter(r => r.status === 'pending').length;
+  const suggestions = DB.get('suggestions', []).filter(s => !s.reviewed).length;
+  const vouchers = DB.get('vouchers', []).filter(v => !v.used).length;
+
+  el.innerHTML = `
+    <div class="stat-grid">
+      <div class="stat"><div class="num">${users.length}</div><div class="lbl">Customers</div></div>
+      <div class="stat"><div class="num">${todayOrders.length}</div><div class="lbl">Today's Orders</div></div>
+      <div class="stat"><div class="num">${fmt(todaySales)}</div><div class="lbl">Today's Sales</div></div>
+      <div class="stat"><div class="num">${pending}</div><div class="lbl">Pending Orders</div></div>
+      <div class="stat"><div class="num">${completed}</div><div class="lbl">Delivered</div></div>
+      <div class="stat"><div class="num">${vouchers}</div><div class="lbl">Active Vouchers</div></div>
+      <div class="stat"><div class="num">${reviews}</div><div class="lbl">Pending Reviews</div></div>
+      <div class="stat"><div class="num">${suggestions}</div><div class="lbl">Suggestions</div></div>
+    </div>
+    <button class="btn-secondary" onclick="adminLogout()"><i class="fas fa-sign-out-alt"></i> Admin Sign Out</button>
+  `;
+}
+
+function renderAdminProducts(el) {
+  const products = DB.get('products', []);
+  el.innerHTML = `
+    <button class="btn-primary" style="margin-bottom:16px" onclick="openProductEditor()">
+      <i class="fas fa-plus"></i> Add New Product
+    </button>
+    ${products.map(p => `
+      <div class="list-item">
+        <div class="list-item-img"><i class="fas ${p.icon}"></i></div>
+        <div class="list-item-info">
+          <strong>${esc(p.name)}</strong>
+          <small>${fmt(p.price)} • ${esc(p.cat)} ${p.available ? '' : '• HIDDEN'}</small>
+        </div>
+        <div class="list-item-actions">
+          <button class="mini-btn" onclick="editProduct('${p.id}')"><i class="fas fa-edit"></i></button>
+          <button class="mini-btn danger" onclick="deleteProduct('${p.id}')"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    `).join('')}
+  `;
+}
+
+function renderAdminOrders(el) {
+  const orders = DB.get('orders', []);
+  if (orders.length === 0) {
+    el.innerHTML = '<div class="empty"><i class="fas fa-receipt"></i><h3>No orders yet</h3></div>'; return;
+  }
+  
+  const statusOrder = { pending_payment: 1, confirmed: 2, delivery: 3, delivered: 4, cancelled: 5 };
+  const sorted = [...orders].sort((a,b) => (statusOrder[a.status]||9) - (statusOrder[b.status]||9));
+
+  el.innerHTML = sorted.map(o => {
+    const user = DB.get('users', []).find(u => u.id === o.userId);
+    let adminActions = '';
+    if (o.status === 'pending_payment') {
+      adminActions = `<span style="font-size:.75rem;color:var(--gray)"><i class="fas fa-clock"></i> Waiting for payment</span>`;
+    } else if (o.status === 'confirmed') {
+      adminActions = `<button class="mini-btn" onclick="updateOrderStatus('${o.id}','delivery')" title="Send for Delivery"><i class="fas fa-truck"></i> Deliver</button>`;
+    } else if (o.status === 'delivery') {
+      adminActions = `<span style="font-size:.75rem;color:var(--gray)">Waiting for customer to mark delivered</span>`;
+    } else if (o.status === 'delivered') {
+      adminActions = `<span style="font-size:.75rem;color:var(--green)"><i class="fas fa-check-circle"></i> Completed</span>`;
+    }
+
+    return `
+      <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+          <div>
+            <strong>${o.id}</strong>
+            <div style="font-size:.75rem;color:var(--gray)">${user ? esc(user.name) : 'Unknown'} • ${timeAgo(o.createdAt)}</div>
+          </div>
+          <span class="pill ${o.status}">${o.status}</span>
+        </div>
+        <div style="font-size:.85rem;color:var(--gray);margin-bottom:10px">
+          ${o.items.map(i => `${i.qty}× ${esc(i.name)} @ ${fmt(i.price)}`).join('<br>')}
+        </div>
+        ${o.deliveryAddress ? `<div style="font-size:.8rem;color:var(--gray);padding:8px;background:var(--cream);border-radius:8px;margin-bottom:10px">
+          <i class="fas fa-map-marker-alt"></i> ${esc(o.deliveryAddress.area)} — ${esc(o.deliveryAddress.address)}<br>
+          <i class="fas fa-phone"></i> ${esc(o.deliveryAddress.phone)}
+        </div>` : `<div style="font-size:.8rem;color:var(--gray);margin-bottom:10px"><i class="fas fa-store"></i> Pickup</div>`}
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px dashed #eee">
+          <div>
+            <span class="pill ${o.paymentStatus}">${o.paymentStatus}</span>
+            ${o.mpesaReceipt ? `<span style="font-size:.7rem;color:var(--gray);margin-left:6px">${o.mpesaReceipt}</span>` : ''}
+            <strong style="margin-left:8px;color:var(--caramel)">${fmt(o.total)}</strong>
+          </div>
+          <div>${adminActions}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function updateOrderStatus(id, status) {
+  const orders = DB.get('orders', []);
+  const idx = orders.findIndex(o => o.id === id);
+  if (idx < 0) return;
+  
+  if (status === 'delivered') {
+    toast('Only the customer can mark an order as delivered', true);
+    return;
+  }
+  
+  orders[idx].status = status;
+  DB.set('orders', orders);
+  toast('Order status updated to ' + status);
+  renderAdmin();
+}
+
+function renderAdminCustomers(el) {
+  const users = DB.get('users', []);
+  if (users.length === 0) {
+    el.innerHTML = '<div class="empty"><i class="fas fa-users"></i><h3>No customers yet</h3></div>'; return;
+  }
+  el.innerHTML = users.map(u => `
+    <div class="list-item">
+      <div class="list-item-img" style="background:linear-gradient(135deg,var(--gold),var(--caramel));color:var(--choc);font-weight:800">
+        ${u.name.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase()}
+      </div>
+      <div class="list-item-info">
+        <strong>${esc(u.name)}</strong>
+        <small>${esc(u.email || u.phone)} • ${u.points || 0} pts • ${u.cardNumber}</small>
+      </div>
+      <div class="list-item-actions">
+        <button class="mini-btn ${u.status==='active'?'success':'danger'}" onclick="toggleCustomer('${u.id}')">
+          <i class="fas ${u.status==='active'?'fa-check':'fa-ban'}"></i>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleCustomer(id) {
+  const users = DB.get('users', []);
+  const idx = users.findIndex(u => u.id === id);
+  if (idx < 0) return;
+  users[idx].status = users[idx].status === 'active' ? 'suspended' : 'active';
+  DB.set('users', users);
+  toast('Customer ' + users[idx].status);
+  renderAdmin();
+}
+
+function renderAdminLoyalty(el) {
+  el.innerHTML = `
+    <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:16px;box-shadow:var(--shadow)">
+      <h3 style="font-size:.95rem;margin-bottom:12px"><i class="fas fa-search"></i> Verify Card</h3>
+      <div class="form-group">
+        <input type="text" id="verifyCard" placeholder="Enter card number or phone/email">
+      </div>
+      <button class="btn-primary" onclick="verifyCard()">Verify</button>
+      <div id="verifyResult" style="margin-top:12px"></div>
+    </div>
+    <h3 style="font-size:.95rem;margin-bottom:10px">Active Cards (${DB.get('users',[]).length})</h3>
+    ${DB.get('users',[]).map(u => `
+      <div class="list-item">
+        <div class="list-item-img" style="background:var(--choc);color:var(--gold)"><i class="fas fa-crown"></i></div>
+        <div class="list-item-info">
+          <strong>${esc(u.name)}</strong>
+          <small>${u.cardNumber} • ${u.points || 0} pts</small>
+        </div>
+        <span class="pill ${u.status==='active'?'confirmed':'cancelled'}">${u.status}</span>
+      </div>
+    `).join('')}
+  `;
+}
+
+function verifyCard() {
+  const q = document.getElementById('verifyCard').value.trim().toLowerCase();
+  const users = DB.get('users', []);
+  const u = users.find(x => x.cardNumber.toLowerCase() === q ||
+    x.email.toLowerCase() === q || x.phone === q);
+  const r = document.getElementById('verifyResult');
+  if (!u) {
+    r.innerHTML = '<div style="padding:12px;background:#FEE;color:var(--red);border-radius:8px;font-size:.85rem"><i class="fas fa-times-circle"></i> Card not found</div>';
+    return;
+  }
+  r.innerHTML = `<div style="padding:14px;background:#EFE;border-radius:8px;font-size:.85rem">
+    <strong style="color:var(--green)"><i class="fas fa-check-circle"></i> Valid Card</strong><br>
+    Name: ${esc(u.name)}<br>
+    Card: ${u.cardNumber}<br>
+    Status: ${u.status}<br>
+    Points: ${u.points || 0}
+  </div>`;
+}
+
+function renderAdminReviews(el) {
+  const reviews = DB.get('reviews', []);
+  if (reviews.length === 0) {
+    el.innerHTML = '<div class="empty"><i class="fas fa-star"></i><h3>No reviews yet</h3></div>'; return;
+  }
+  el.innerHTML = reviews.map(r => {
+    const user = DB.get('users', []).find(u => u.id === r.userId);
+    return `
+      <div class="review-card">
+        <div class="review-head">
+          <strong>${user ? esc(user.name) : 'Unknown'}</strong>
+          <span class="stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>
+        </div>
+        <div class="review-text">${esc(r.text)}</div>
+        <div class="review-meta">${timeAgo(r.createdAt)} • <span class="pill ${r.status==='pending'?'pending':r.status==='approved'?'confirmed':'cancelled'}">${r.status}</span></div>
+        ${r.status === 'pending' ? `<div style="margin-top:8px;display:flex;gap:6px">
+          <button class="mini-btn success" onclick="moderateReview('${r.id}','approved')"><i class="fas fa-check"></i></button>
+          <button class="mini-btn danger" onclick="moderateReview('${r.id}','rejected')"><i class="fas fa-times"></i></button>
+        </div>` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function moderateReview(id, status) {
+  const reviews = DB.get('reviews', []);
+  const idx = reviews.findIndex(r => r.id === id);
+  if (idx < 0) return;
+  reviews[idx].status = status;
+  DB.set('reviews', reviews);
+  toast('Review ' + status);
+  renderAdmin();
+}
+
+function renderAdminSuggestions(el) {
+  const suggestions = DB.get('suggestions', []);
+  if (suggestions.length === 0) {
+    el.innerHTML = '<div class="empty"><i class="fas fa-comment-dots"></i><h3>No suggestions yet</h3></div>'; return;
+  }
+  el.innerHTML = suggestions.map(s => {
+    const user = DB.get('users', []).find(u => u.id === s.userId);
+    return `
+      <div class="review-card">
+        <div class="review-head">
+          <strong>${user ? esc(user.name) : 'Anonymous'}</strong>
+          <span style="font-size:.7rem;color:var(--gray)">${timeAgo(s.createdAt)}</span>
+        </div>
+        <div class="review-text">${esc(s.text)}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderAdminSettings(el) {
+  const cfg = state.config;
+  el.innerHTML = `
+    <h3 style="font-size:.95rem;margin-bottom:12px">Business Settings</h3>
+    <div class="form-group"><label>Delivery Fee (KSh)</label>
+      <input type="number" id="cfgDelFee" value="${cfg.deliveryFee}"></div>
+    <div class="form-group"><label>Free Delivery Over (KSh)</label>
+      <input type="number" id="cfgFreeOver" value="${cfg.freeDeliveryOver}"></div>
+    <div class="form-group"><label>Minimum Order (KSh)</label>
+      <input type="number" id="cfgMinOrder" value="${cfg.minOrder}"></div>
+    <div class="form-group"><label>Opening Hours</label>
+      <input type="text" id="cfgHours" value="${esc(cfg.openingHours)}"></div>
+    <div class="form-group"><label>Announcement</label>
+      <input type="text" id="cfgAnnounce" value="${esc(cfg.announcement)}"></div>
+    <div class="form-group"><label>Delivery Areas (comma-separated)</label>
+      <textarea id="cfgAreas">${cfg.deliveryAreas.join(', ')}</textarea></div>
+    <button class="btn-primary" onclick="saveSettings()">Save Settings</button>
+  `;
+}
+
+function saveSettings() {
+  const cfg = state.config;
+  cfg.deliveryFee = parseInt(document.getElementById('cfgDelFee').value) || 100;
+  cfg.freeDeliveryOver = parseInt(document.getElementById('cfgFreeOver').value) || 500;
+  cfg.minOrder = parseInt(document.getElementById('cfgMinOrder').value) || 200;
+  cfg.openingHours = document.getElementById('cfgHours').value;
+  cfg.announcement = document.getElementById('cfgAnnounce').value;
+  cfg.deliveryAreas = document.getElementById('cfgAreas').value.split(',').map(s => s.trim()).filter(Boolean);
+  DB.set('config', cfg);
+  state.config = cfg;
+  toast('Settings saved');
+}
+
+// ---------- PRODUCT EDITOR ----------
+let editingProductId = null;
+
+function openProductEditor(productId = null) {
+  editingProductId = productId;
+  const p = productId ? state.products.find(x => x.id === productId) : {
+    name:'', price:0, cat:'chips', icon:'fa-utensils', desc:'', available:true,
+  };
+  document.getElementById('editTitle').textContent = productId ? 'Edit Product' : 'New Product';
+  document.getElementById('editBody').innerHTML = `
+    <div class="form-group"><label>Name</label>
+      <input type="text" id="peName" value="${esc(p.name)}"></div>
+    <div class="form-group"><label>Description</label>
+      <textarea id="peDesc">${esc(p.desc)}</textarea></div>
+    <div class="form-group"><label>Price (KSh)</label>
+      <input type="number" id="pePrice" value="${p.price}"></div>
+    <div class="form-group"><label>Category</label>
+      <select id="peCat">${state.categories.filter(c=>c.id!=='all').map(c =>
+        `<option value="${c.id}" ${p.cat===c.id?'selected':''}>${c.name}</option>`
+      ).join('')}</select></div>
+    <div class="form-group"><label>Icon (FontAwesome)</label>
+      <input type="text" id="peIcon" value="${esc(p.icon)}" placeholder="fa-utensils"></div>
+    <div class="form-group">
+      <label><input type="checkbox" id="peAvail" ${p.available?'checked':''}> Available</label>
+    </div>
+  `;
+  document.getElementById('editModal').dataset.action = 'product';
+  document.getElementById('editModal').classList.add('open');
+}
+
+function editProduct(id) { openProductEditor(id); }
+
+function deleteProduct(id) {
+  if (!confirm('Delete this product permanently?')) return;
+  const products = DB.get('products', []).filter(p => p.id !== id);
+  DB.set('products', products);
+  state.products = products;
+  toast('Product deleted');
+  renderAdmin();
+}
+
+function saveEdit() {
+  const action = document.getElementById('editModal').dataset.action;
+  if (action === 'product') {
+    const name = document.getElementById('peName').value.trim();
+    const desc = document.getElementById('peDesc').value.trim();
+    const price = parseInt(document.getElementById('pePrice').value);
+    const cat = document.getElementById('peCat').value;
+    const icon = document.getElementById('peIcon').value.trim() || 'fa-utensils';
+    const available = document.getElementById('peAvail').checked;
+    if (!name || !price) { toast('Name and price required', true); return; }
+
+    const products = DB.get('products', []);
+    if (editingProductId) {
+      const idx = products.findIndex(p => p.id === editingProductId);
+      if (idx >= 0) products[idx] = { ...products[idx], name, desc, price, cat, icon, available };
+    } else {
+      products.push({ id: uid('p'), name, desc, price, cat, icon, available, isNew: true });
+    }
+    DB.set('products', products);
+    state.products = products;
+    toast('Product saved');
+    closeModal('editModal');
+    renderAdmin();
+    renderProducts();
+  } else if (action === 'review') {
+    const rating = parseInt(document.getElementById('reviewRating').value);
+    const text = document.getElementById('reviewText').value.trim();
+    if (!text) { toast('Please write a review', true); return; }
+    const reviews = DB.get('reviews', []);
+    reviews.unshift({ id: uid('R'), userId: state.user.id, rating, text,
+      status:'pending', createdAt: new Date().toISOString() });
+    DB.set('reviews', reviews);
+    toast('Review submitted for moderation');
+    closeModal('editModal');
+  } else if (action === 'suggestion') {
+    const text = document.getElementById('suggestionText').value.trim();
+    if (!text) { toast('Please enter a suggestion', true); return; }
+    const suggestions = DB.get('suggestions', []);
+    suggestions.unshift({ id: uid('S'), userId: state.user.id, text,
+      reviewed: false, createdAt: new Date().toISOString() });
+    DB.set('suggestions', suggestions);
+    toast('Suggestion submitted — thank you!');
+    closeModal('editModal');
+  }
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+// ---------- MISC ----------
+function clearAllData() {
+  if (!confirm('Reset ALL app data? This cannot be undone.')) return;
+  Object.keys(localStorage).filter(k => k.startsWith('upcafe_')).forEach(k => localStorage.removeItem(k));
+  location.reload();
+}
+
+// ---------- BOOT ----------
+function boot() {
+  initDB();
+  loadProducts();
+  state.user = DB.get('currentUser');
+  state.admin = DB.get('currentAdmin');
+  state.cart = DB.get('cart', []);
+  updateCartBadge();
+  updateLoyaltyBanner();
+  renderCats();
+  renderProducts();
+  const cfg = state.config;
+  if (cfg.announcement) {
+    const strip = document.querySelector('.promo-strip');
+    if (strip) {
+      strip.innerHTML = '<i class="fas fa-fire"></i><span>' + esc(cfg.announcement) + '</span>';
+    }
+  }
+  if (state.admin) showScreen('admin');
+}
+
+document.addEventListener('DOMContentLoaded', boot);
+</script>
+</body>
+</html>
