@@ -678,7 +678,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
    UP & CAFE — COMPLETE APPLICATION LOGIC
    ============================================================ */
 
-const API_BASE = 'const API_BASE = 'https://upcafe-backend.onrender.com';
+// ⚠️ IMPORTANT: REPLACE THIS WITH YOUR DEPLOYED BACKEND URL
+const API_BASE = 'https://upcafe-backend.onrender.com';
 
 // M-Pesa Configuration (for display only)
 const MPESA_SHORTCODE = '0141701000';
@@ -1305,14 +1306,12 @@ async function processPayment() {
     return { productId: p.id, name: p.name, price, qty: c.qty, subtotal: price * c.qty };
   });
 
-  // Points will be awarded after delivery
   const eligibleAmount = t.subtotal;
   let pointsEarned = 0;
   if (eligibleAmount > cfg.minOrderForPoints) {
     pointsEarned = Math.floor(eligibleAmount / cfg.pointsPerKsh);
   }
 
-  // If CASH: create order as confirmed, admin will process
   if (payMethod === 'cash') {
     const order = {
       id: orderId,
@@ -1324,7 +1323,7 @@ async function processPayment() {
       deliveryType,
       payMethod: 'cash',
       paymentStatus: 'unpaid',
-      status: 'confirmed', // Admin sees it immediately
+      status: 'confirmed',
       pointsEarned: pointsEarned,
       pointsAwarded: false,
       deliveryAddress: deliveryType === 'delivery' ? {
@@ -1350,7 +1349,6 @@ async function processPayment() {
     return;
   }
 
-  // MPESA: Initiate STK push
   const mp = document.getElementById('coMpesa')?.value.trim();
   if (!mp || mp.length < 9) { toast('Enter a valid M-Pesa number', true); return; }
 
@@ -1368,7 +1366,6 @@ async function processPayment() {
     const data = await res.json();
     if (!data.success) throw new Error(data.details || data.error || 'STK Push failed');
 
-    // Save order as pending_payment
     const order = {
       id: orderId,
       userId: state.user.id,
@@ -1426,7 +1423,6 @@ async function pollPaymentStatus(checkoutId, orderId) {
       state.pollInterval = null;
       document.getElementById('processingOverlay').classList.remove('open');
 
-      // Update order to confirmed
       const orders = DB.get('orders', []);
       const idx = orders.findIndex(o => o.id === orderId);
       if (idx >= 0) {
@@ -1434,9 +1430,6 @@ async function pollPaymentStatus(checkoutId, orderId) {
         orders[idx].status = 'confirmed';
         orders[idx].mpesaReceipt = data.receipt;
         DB.set('orders', orders);
-
-        // Notify admin (via console — in production, push notification)
-        console.log(`💰 Payment received | Order: ${orderId} | Receipt: ${data.receipt}`);
       }
 
       DB.set('cart', []);
@@ -1457,7 +1450,6 @@ async function pollPaymentStatus(checkoutId, orderId) {
       document.getElementById('payBtn').disabled = false;
       document.getElementById('payBtn').textContent = 'Place Order & Pay';
 
-      // Mark order as cancelled
       const orders = DB.get('orders', []);
       const idx = orders.findIndex(o => o.id === orderId);
       if (idx >= 0) {
